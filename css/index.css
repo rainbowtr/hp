@@ -1,2 +1,2 @@
-.wrapper{font-size:14px;font-weight:600}.titleBlock{display:flex;justify-content:center;flex-wrap:wrap}
+.wrapper{font-size:14px;font-weight:600}.titleBlock{display:flex;align-items:center;flex-direction:column}
 /*# sourceMappingURL=index.css.map */
