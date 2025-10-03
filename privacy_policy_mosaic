@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AI顔モザイク - プライバシーポリシー</title>
+        <link
+            rel="icon"
+            href="RTMosaicAll/Assets.xcassets/AppIcon.appiconset/AppIcon.png"
+            type="image/png"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    "Helvetica Neue", Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background-color: #f5f5f7;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 30px 20px;
+                text-align: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+
+            .main {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .item {
+                background: white;
+                border-radius: 12px;
+                padding: 30px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+
+            .item.title {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-bottom: 15px;
+                font-weight: 700;
+            }
+
+            h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+                color: #1d1d1f;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .description {
+                font-size: 16px;
+                line-height: 1.8;
+                color: #6e6e73;
+            }
+
+            .item.title .description {
+                color: rgba(255, 255, 255, 0.95);
+            }
+
+            .important {
+                background: #fff3cd;
+                border-left: 4px solid #ffc107;
+                padding: 20px;
+                margin: 20px 0;
+                border-radius: 8px;
+            }
+
+            .important h3 {
+                color: #856404;
+                margin-bottom: 10px;
+                font-size: 18px;
+            }
+
+            .important .description {
+                color: #856404;
+            }
+
+            ul {
+                margin-left: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            li {
+                margin-bottom: 8px;
+                color: #6e6e73;
+            }
+
+            .icon {
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+            }
+
+            .badge {
+                display: inline-block;
+                background: #28a745;
+                color: white;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                font-weight: 600;
+                margin-left: 10px;
+            }
+
+            .badge.alert {
+                background: #dc3545;
+            }
+
+            @media (max-width: 768px) {
+                .header {
+                    font-size: 20px;
+                    padding: 20px 15px;
+                }
+
+                h1 {
+                    font-size: 24px;
+                }
+
+                h2 {
+                    font-size: 18px;
+                }
+
+                .item {
+                    padding: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">🎭 AI顔モザイク</div>
+
+        <div class="main">
+            <div class="item title">
+                <h1>AI顔モザイク プライバシーポリシー</h1>
+                <div class="description">
+                    AI顔モザイクは、お客様のプライバシーを最優先に考えて設計されています。<br />
+                    すべての処理はお使いのデバイス上で完結し、顔データは一切保持されません。
+                </div>
+            </div>
+
+            <div class="contents">
+                <!-- 重要：顔データの非保持について -->
+                <div class="item important">
+                    <h3>⚠️ 重要：顔データは保持されません</h3>
+                    <div class="description">
+                        <strong>顔データは一切保持されません。</strong
+                        ><br /><br />
+                        本アプリで検出される顔の位置情報（矩形座標）は、モザイク処理のために一時的にメモリ上で使用されるのみで、処理完了後は即座に削除されます。<br /><br />
+                        つまり、本アプリは顔データを「収集」するのではなく、モザイク処理のために一時的に「使用」するだけであり、処理後はすべて破棄されます。
+                    </div>
+                </div>
+
+                <!-- 顔データの取り扱い -->
+                <div class="item">
+                    <h2>
+                        🔒 顔データの取り扱い
+                        <span class="badge">100%プライベート</span>
+                    </h2>
+                    <div class="description">
+                        <strong>本アプリが検出・使用するデータ：</strong>
+                        <ul>
+                            <li>顔の位置情報（四角形の座標値のみ）</li>
+                            <li>画像内での顔の大きさ</li>
+                        </ul>
+
+                        <strong>以下のデータは一切収集しません：</strong>
+                        <ul>
+                            <li>生体認証データ</li>
+                            <li>顔の特徴点</li>
+                            <li>個人識別情報</li>
+                            <li>顔認証用のデータ</li>
+                            <li>表情や感情の分析データ</li>
+                        </ul>
+
+                        すべての顔検出処理は、Appleの顔認識技術を使用してデバイス上で実行されます。
+                    </div>
+                </div>
+
+                <!-- データの利用目的 -->
+                <div class="item">
+                    <h2>📋 データの利用目的</h2>
+                    <div class="description">
+                        検出した顔の位置情報は、以下の目的でのみ使用されます：
+                        <ul>
+                            <li>検出された顔の領域を画面に表示</li>
+                            <li>選択された顔領域へのモザイク効果適用</li>
+                            <li>モザイクの適用/非適用の切り替え</li>
+                        </ul>
+                        これ以外の用途では一切使用されません。
+                    </div>
+                </div>
+
+                <!-- データの保存と保持期間 -->
+                <div class="item">
+                    <h2>💾 データの保存と保持期間</h2>
+                    <div class="description">
+                        <strong>顔の位置データ：</strong>
+                        <ul>
+                            <li>デバイスのメモリ（RAM）に一時保存のみ</li>
+                            <li>保持期間：2〜10秒（処理中のみ）</li>
+                            <li>ストレージへの永続保存なし</li>
+                            <li>データベースへの保存なし</li>
+                            <li>iCloudへの同期なし</li>
+                            <li>バックアップ対象外</li>
+                        </ul>
+
+                        <strong
+                            >顔座標データは以下のタイミングで自動削除されます：</strong
+                        >
+                        <ul>
+                            <li>画像処理の完了時</li>
+                            <li>別の画像を選択時</li>
+                            <li>処理のキャンセル時</li>
+                            <li>アプリのバックグラウンド移行時</li>
+                            <li>メモリ不足時</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 第三者への提供 -->
+                <div class="item">
+                    <h2>
+                        🚫 第三者への提供
+                        <span class="badge alert">提供なし</span>
+                    </h2>
+                    <div class="description">
+                        <strong>顔データの第三者提供：一切行いません</strong>
+                        <ul>
+                            <li>外部サーバーへの送信なし</li>
+                            <li>分析サービスへの提供なし</li>
+                            <li>広告ネットワークへの共有なし</li>
+                            <li>クラウドストレージへの保存なし</li>
+                        </ul>
+                        すべての処理は100%オフラインで、お使いのデバイス内で完結します。
+                    </div>
+                </div>
+
+                <!-- カメラ・写真へのアクセス -->
+                <div class="item">
+                    <h2>📷 カメラ・写真へのアクセス</h2>
+                    <div class="description">
+                        本アプリは以下の目的でアクセス権限を要求します：
+                        <ul>
+                            <li>
+                                <strong>カメラ：</strong>
+                                写真を撮影して顔にモザイク処理を適用するため
+                            </li>
+                            <li>
+                                <strong>フォトライブラリ（読み取り）：</strong>
+                                既存の写真を選択して顔にモザイク処理を適用するため
+                            </li>
+                            <li>
+                                <strong>フォトライブラリ（書き込み）：</strong>
+                                モザイク処理済みの画像を保存するため
+                            </li>
+                        </ul>
+                        これらのアクセス権限は、上記の目的以外では使用されません。
+                    </div>
+                </div>
+
+                <!-- アプリケーションの利用状況解析 -->
+                <div class="item">
+                    <h2>📊 アプリケーションの利用状況解析</h2>
+                    <div class="description">
+                        アプリを改善し使いやすくするため、以下のサービスを利用しています：
+                        <ul>
+                            <li>
+                                <strong>Firebase Analytics：</strong>
+                                匿名での利用統計（顔データは含まれません）
+                            </li>
+                            <li>
+                                <strong>Firebase Crashlytics：</strong>
+                                クラッシュレポート（顔データは含まれません）
+                            </li>
+                            <li>
+                                <strong>Firebase Performance：</strong>
+                                パフォーマンス監視（顔データは含まれません）
+                            </li>
+                        </ul>
+                        これらの情報には顔データは一切含まれず、個人を特定することはできません。
+                    </div>
+                </div>
+
+                <!-- 広告について -->
+                <div class="item">
+                    <h2>📢 広告について</h2>
+                    <div class="description">
+                        本アプリはGoogle
+                        AdMobによる広告を表示することがあります。<br />
+                        広告の表示に際して：
+                        <ul>
+                            <li>
+                                顔データが広告ネットワークに送信されることはありません
+                            </li>
+                            <li>
+                                広告のパーソナライズは、顔データとは無関係に行われます
+                            </li>
+                            <li>
+                                ATT（App Tracking
+                                Transparency）に準拠し、ユーザーの同意を得て広告を表示します
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 免責事項 -->
+                <div class="item">
+                    <h2>⚖️ 免責事項</h2>
+                    <div class="description">
+                        アプリケーションをご利用の際の不具合やお困りごとなどに対してできる限りのサポートを行いますが、ご利用者様がアプリケーションを利用して生じた損害に関して、開発元は責任を負わないものとします。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
