@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tily - Keyboard-Driven Window Management for macOS</title>
+    <meta name="description" content="Launch Dock apps with number keys, arrange windows with arrows, and switch apps instantly. Tily brings Windows-style productivity to macOS.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border-subtle: rgba(0, 0, 0, 0.06);
+            --border-medium: rgba(0, 0, 0, 0.1);
+
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+
+            --accent: #2563eb;
+            --accent-hover: #3b82f6;
+            --accent-glow: rgba(37, 99, 235, 0.15);
+            --accent-soft: rgba(37, 99, 235, 0.1);
+
+            --success: #22c55e;
+            --premium: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+            --shadow-glow: 0 0 60px rgba(37, 99, 235, 0.1);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-display);
+            background: #f8fafc;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(ellipse 90% 90% at 15% 15%, rgba(37, 99, 235, 0.25) 0%, transparent 55%),
+                radial-gradient(ellipse 80% 80% at 85% 85%, rgba(124, 58, 237, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse 70% 70% at 35% 75%, rgba(6, 182, 212, 0.18) 0%, transparent 45%),
+                radial-gradient(ellipse 60% 60% at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
+            animation: gradientMove 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(-5%, -5%) rotate(3deg);
+            }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .orb-1 {
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.08) 40%, transparent 70%);
+            top: -300px;
+            right: -200px;
+            animation: float1 25s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.18) 0%, rgba(124, 58, 237, 0.06) 40%, transparent 70%);
+            bottom: -200px;
+            left: -150px;
+            animation: float2 30s ease-in-out infinite;
+        }
+
+        .orb-3 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.05) 40%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float3 20s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 40px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, -30px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* Grid pattern */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 9999;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--premium);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+            color: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(29, 78, 216, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e40af 0%, #6d28d9 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(29, 78, 216, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-medium);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-medium);
+        }
+
+        .btn-large {
+            padding: 14px 28px;
+            font-size: 16px;
+            border-radius: var(--radius-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--accent-soft);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .hero h1 .gradient {
+            background: var(--premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-medium);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-soft);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+
+        /* How It Works */
+        .how-it-works {
+            padding: 120px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-medium);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .step h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            padding: 120px 0;
+            background: var(--bg-secondary);
+        }
+
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .screenshot-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .screenshot-placeholder {
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+            border: 2px dashed var(--border-subtle);
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: var(--text-tertiary);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-placeholder:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .screenshot-placeholder svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.5;
+        }
+
+        .screenshot-placeholder span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 120px 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .pricing-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 16px;
+            background: var(--accent);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+        }
+
+        .pricing-header {
+            margin-bottom: 32px;
+        }
+
+        .pricing-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pricing-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .pricing-price {
+            margin-bottom: 32px;
+        }
+
+        .pricing-amount {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .pricing-period {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features .check {
+            width: 20px;
+            height: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pricing-features .check svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--success);
+        }
+
+        .pricing-features .limit {
+            margin-left: auto;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 120px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-tertiary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question svg {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding-bottom: 24px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .download-box {
+            max-width: 600px;
+            margin: 48px auto 0;
+            padding: 48px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+        }
+
+        .download-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: var(--premium);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: white;
+        }
+
+        .download-version {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        .download-requirements {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-secondary);
+        }
+
+        .footer-copy {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .keyboard {
+                gap: 4px;
+                padding: 16px;
+            }
+
+            .key {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+
+            .key-modifier {
+                width: 56px;
+                font-size: 9px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features, .how-it-works, .pricing, .faq, .download {
+                padding: 80px 0;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">T</div>
+                <span class="logo-text">Tily</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="#download" class="btn btn-primary">Download</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>Now available for macOS 14+</span>
+                </div>
+                <h1>
+                    Window management,<br>
+                    <span class="gradient">reimagined</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Keyboard-first control for macOS. Find any window in seconds, arrange your workspace with precision, and flow between apps effortlessly—all without reaching for your mouse.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Download Free
+                    </a>
+                    <a href="#features" class="btn btn-secondary btn-large">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Features</p>
+                <h2 class="section-title">Everything you need for<br>keyboard-driven workflow</h2>
+                <p class="section-subtitle">
+                    Stop reaching for your mouse. Control windows and apps entirely from your keyboard.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18"/>
+                            <path d="M9 21V9"/>
+                        </svg>
+                    </div>
+                    <h3>Dock Shortcuts</h3>
+                    <p>Launch any Dock app with a number key. Just like Windows taskbar shortcuts you've always wanted on Mac.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="9"/>
+                            <rect x="14" y="3" width="7" height="9"/>
+                            <rect x="3" y="14" width="18" height="7"/>
+                        </svg>
+                    </div>
+                    <h3>Window Tiling</h3>
+                    <p>Snap windows to edges, corners, or tile them side by side. Organize your workspace in seconds.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="6" width="20" height="12" rx="2"/>
+                            <path d="M12 12h.01"/>
+                            <path d="M17 12h.01"/>
+                            <path d="M7 12h.01"/>
+                        </svg>
+                    </div>
+                    <h3>App Switcher</h3>
+                    <p>A faster alternative to Cmd+Tab. Navigate running apps with arrow keys and switch instantly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Workspaces</h3>
+                    <p>Save and restore app arrangements for different workflows. Switch contexts with a single shortcut.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Multi-Display</h3>
+                    <p>Move windows between displays effortlessly. Works seamlessly with external monitors.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Pinned Apps</h3>
+                    <p>Quick access to your most-used apps via an overlay. Pin apps and launch them anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">How It Works</p>
+                <h2 class="section-title">Get started in seconds</h2>
+                <p class="section-subtitle">
+                    Tily runs quietly in your menu bar, ready when you need it.
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download & Install</h3>
+                    <p>Download the DMG, drag to Applications, and launch Tily.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Grant Accessibility</h3>
+                    <p>Allow Accessibility permissions in System Settings to enable keyboard control.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Using</h3>
+                    <p>Hold Ctrl and press number keys to launch apps. It just works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Screenshots</p>
+                <h2 class="section-title">See Tily in Action</h2>
+                <p class="section-subtitle">
+                    Watch how Tily transforms your workflow with powerful keyboard shortcuts.
+                </p>
+            </div>
+
+            <div class="screenshot-gallery">
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <path d="M21 15l-5-5L5 21"/>
+                        </svg>
+                        <span>App Switcher</span>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <path d="M21 15l-5-5L5 21"/>
+                        </svg>
+                        <span>Window Tiling</span>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <path d="M21 15l-5-5L5 21"/>
+                        </svg>
+                        <span>Dock Shortcuts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Pricing</p>
+                <h2 class="section-title">Simple, honest pricing</h2>
+                <p class="section-subtitle">
+                    Try free forever, or unlock everything with a one-time purchase.
+                </p>
+            </div>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Free</h3>
+                        <p class="pricing-desc">Perfect for getting started</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$0</span>
+                        <span class="pricing-period">forever</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Window tiling
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            App switcher
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Dock shortcuts
+                            <span class="limit">1-5</span>
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Workspace
+                            <span class="limit">1 slot</span>
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Pinned apps
+                            <span class="limit">2 apps</span>
+                        </li>
+                    </ul>
+                    <a href="#download" class="btn btn-secondary">Download Free</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Premium</h3>
+                        <p class="pricing-desc">Unlock all features</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$9.99</span>
+                        <span class="pricing-period">one-time</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Window tiling
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            App switcher
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Dock shortcuts
+                            <span class="limit">1-9, 0, F1-F12</span>
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Workspaces
+                            <span class="limit">10 slots</span>
+                        </li>
+                        <li>
+                            <span class="check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </span>
+                            Pinned apps
+                            <span class="limit">Unlimited</span>
+                        </li>
+                    </ul>
+                    <a href="https://rainbowtree.lemonsqueezy.com/buy/18551d57-dcd7-421b-9ab7-7f0bb7d6c338" class="btn btn-primary" target="_blank">Buy License</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">FAQ</p>
+                <h2 class="section-title">Frequently asked questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why does Tily need Accessibility permissions?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tily uses macOS Accessibility APIs to detect keyboard shortcuts, move windows, and interact with the Dock. This is the standard way for window management apps to work on macOS. Your privacy is respected — Tily doesn't collect any data.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I enter my license key?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click the Tily icon in your menu bar, select "Settings", then go to the "Premium" tab. Enter your license key and click "Activate". Your premium features will be unlocked immediately.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I change the modifier key?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! In Settings, you can choose between Control, Option, Command, or any combination of modifier keys. Customize it to fit your workflow.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Does it work with multiple displays?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Tily fully supports multi-display setups. Press the arrow key three times at an edge to move windows to the adjacent display. The app switcher and overlays work across all connected screens.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What macOS versions are supported?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tily requires macOS 14.0 (Sonoma) or later. It's built with Swift and optimized for Apple Silicon, but also runs on Intel Macs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Download</p>
+                <h2 class="section-title">Ready to boost your productivity?</h2>
+                <p class="section-subtitle">
+                    Download Tily and start using keyboard shortcuts in minutes.
+                </p>
+            </div>
+
+            <div class="download-box">
+                <div class="download-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </div>
+                <p class="download-version">Version 1.0.0 • Universal Binary</p>
+                <a href="https://github.com/rainbowtree-work/Tily/releases/latest/download/Tily.dmg" class="btn btn-primary btn-large">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download for macOS
+                </a>
+                <p class="download-requirements">
+                    Requires macOS 14.0 or later • Apple Silicon & Intel
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://github.com/rainbowtree-work/Tily" target="_blank">GitHub</a>
+                    <a href="mailto:support@rainbowtree.work">Support</a>
+                    <a href="https://rainbowtree.work/privacy" target="_blank">Privacy</a>
+                </div>
+                <p class="footer-copy">© 2024 Rainbow Tree. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasOpen = item.classList.contains('open');
+
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+
+                // Toggle current
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step, .pricing-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
