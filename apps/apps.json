@@ -1,0 +1,60 @@
+{
+  "apps": [
+    {
+      "id": "rtinpainting",
+      "name": {
+        "ja": "AI写真消しゴム",
+        "en": "AI Photo Eraser"
+      },
+      "description": {
+        "ja": "AIで写真から不要なものを消去",
+        "en": "Remove unwanted objects from photos with AI"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/rtinpainting.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6757261885",
+      "bundleId": "work.rainbowtree.RTInpainting"
+    },
+    {
+      "id": "rtclipsmart",
+      "name": {
+        "ja": "動画圧縮",
+        "en": "Video Compressor"
+      },
+      "description": {
+        "ja": "動画を簡単に圧縮・変換",
+        "en": "Easily compress and convert videos"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/rtclipsmart.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6757363360",
+      "bundleId": "work.rainbowtree.clipsmart"
+    },
+    {
+      "id": "voicalc",
+      "name": {
+        "ja": "音声電卓",
+        "en": "Voice Calculator"
+      },
+      "description": {
+        "ja": "声で計算できる電卓アプリ",
+        "en": "Voice-powered calculator app"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/voicalc.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6757627358",
+      "bundleId": "work.rainbowtree.soundcalc"
+    },
+    {
+      "id": "rtenvelopbudget",
+      "name": {
+        "ja": "袋分け家計簿",
+        "en": "Envelope Budget"
+      },
+      "description": {
+        "ja": "袋分けで簡単家計管理",
+        "en": "Easy envelope budgeting"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/rtenvelopbudget.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6748582009",
+      "bundleId": "work.rainbowtree.RTEnvelopBudget"
+    }
+  ]
+}
