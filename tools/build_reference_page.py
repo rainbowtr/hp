@@ -103,6 +103,25 @@ def mapping_rows(items, cfg):
     return '\n'.join(rows)
 
 
+def app_url(cfg):
+    """App Store リンクにキャンペーンを付ける。
+
+    ★これで「このページ経由で何本落ちたか」が App Store Connect の
+      Analytics（流入元 / Campaign）に出る。**JSもCookieも要らない**ので、
+      GA4を入れるより先にこちらを当てる（同意バナーもプライバシーポリシー改訂も不要）。
+      rank 側では `node cli.js sources` の campaign に slug が並ぶ。
+    """
+    url = cfg['app']['url']
+    ct = cfg.get('campaign') or f"lp-{cfg['slug']}"
+    sep = '&' if '?' in url else '?'
+    return f'{url}{sep}ct={urllib_quote(ct)}&mt=8'
+
+
+def urllib_quote(s):
+    import urllib.parse
+    return urllib.parse.quote(str(s), safe='')
+
+
 def faq_html(cfg):
     blocks, ld = [], []
     for qa in cfg.get('faq', []):
@@ -164,7 +183,7 @@ def build(cfg_path):
            .replace('{{FAQ}}', faq_blocks)
            .replace('{{APP_NAME}}', esc(cfg['app']['name']))
            .replace('{{APP_PITCH}}', cfg['app']['pitch'])
-           .replace('{{APP_URL}}', esc(cfg['app']['url']))
+           .replace('{{APP_URL}}', esc(app_url(cfg)))
            .replace('{{JSONLD}}', json.dumps(jsonld, ensure_ascii=False)))
 
     path = os.path.join(outdir, 'index.html')
