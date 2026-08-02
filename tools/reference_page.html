@@ -25,10 +25,9 @@ body{margin:0;font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hi
 img{max-width:100%}
 a{color:var(--accent)}
 .wrap{max-width:960px;margin:0 auto;padding:0 16px}
-header.site{padding:18px 0}
-header.site a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
-header.site img{width:26px}
-h1{font-size:26px;line-height:1.45;margin:8px 0 12px}
+/* ★上部にブランドヘッダーを置かない。検索から来た人が最初に見るのは「答え」であるべきで、
+   ロゴは1画面ぶんの一等地を奪うだけ。発行者はフッターに出す（誰が書いたかはGoogleにも要る）。 */
+h1{font-size:26px;line-height:1.45;margin:36px 0 12px}
 .lead{font-size:16px;margin:0 0 18px}
 .counts{font-size:13px;color:var(--sub);margin:0 0 22px}
 h2{font-size:20px;margin:44px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
@@ -84,8 +83,6 @@ footer a{color:var(--sub)}
 </style>
 </head>
 <body>
-<header class="site"><div class="wrap"><a href="/"><img src="/images/rainbow.svg" alt="">RAINBOW TREE</a></div></header>
-
 <main class="wrap">
   <h1>{{H1}}</h1>
   <p class="lead">{{LEAD}}</p>
