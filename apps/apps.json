@@ -1,60 +1,116 @@
 {
   "apps": [
     {
-      "id": "rtinpainting",
+      "id": "rtredsheet",
       "name": {
-        "ja": "AI写真消しゴム",
-        "en": "AI Photo Eraser"
+        "ja": "赤シートカメラ：写真をかくして暗記",
+        "en": "Red Sheet Study Camera"
       },
       "description": {
-        "ja": "AIで写真から不要なものを消去",
-        "en": "Remove unwanted objects from photos with AI"
+        "ja": "撮るだけで、いつものノートが暗記帳に。",
+        "en": "Turn your everyday notes into flashcards — just by taking a "
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/rtredsheet.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6790114724",
+      "bundleId": "work.rainbowtree.RTRedSheet"
+    },
+    {
+      "id": "tomarigi",
+      "name": {
+        "ja": "とまり木 - 子育ての発達相談",
+        "en": "とまり木 - 子育ての発達相談"
+      },
+      "description": {
+        "ja": "「発達が気になるけれど、どこに相談すればいいか分からない」",
+        "en": "「発達が気になるけれど、どこに相談すればいいか分からない」"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/tomarigi.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6790160048",
+      "bundleId": "work.rainbowtree.tomarigi"
+    },
+    {
+      "id": "rainbowtreecounselor",
+      "name": {
+        "ja": "AIカウンセラー - こころパートナー",
+        "en": "AIカウンセラー - こころパートナー"
+      },
+      "description": {
+        "ja": "つらい悩み、不安、ストレス…ひとりで抱えていませんか？「こころパートナー」は、24時間365日いつでも頼れるAIカウンセ",
+        "en": "つらい悩み、不安、ストレス…ひとりで抱えていませんか？「こころパートナー」は、24時間365日いつでも頼れるAIカウンセ"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/rainbowtreecounselor.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6743931641",
+      "bundleId": "work.rainbowtree.rainbowtreeCounselor"
+    },
+    {
+      "id": "rainbowtreeconsult",
+      "name": {
+        "ja": "AIお悩み相談 - みらいコンパス (匿名で悩み解消日記)",
+        "en": "AI Consultation Mirai Compass"
+      },
+      "description": {
+        "ja": "心が軽くなる、未来へ進むコンパス 「みらいコンパス」",
+        "en": "Mirai Compass: Lighten Your Heart, Guide Your Future"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/rainbowtreeconsult.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6503657969",
+      "bundleId": "work.rainbowtree.rainbowtreeConsult"
+    },
+    {
+      "id": "rtsuperresolution",
+      "name": {
+        "ja": "AI高画質化 - クリアで美しい写真や画像を簡単に",
+        "en": "AI Image Enhancer Clear Easily"
+      },
+      "description": {
+        "ja": "数種類の高画質化が選べてAIで写真を高精細にアップスケールすることができます。",
+        "en": "Choose from several enhancement options and upscale your pho"
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/rtsuperresolution.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6741378228",
+      "bundleId": "work.rainbowtree.RTSuperResolution"
+    },
+    {
+      "id": "komashashin",
+      "name": {
+        "ja": "かんたんコマ写真 - 動画から写真を高画質保存",
+        "en": "Easy Frame Photo - Video Grab"
+      },
+      "description": {
+        "ja": "動画の中の「いちばんいい瞬間」を、写真として保存できるアプリです。",
+        "en": "Save the best moment inside your video as a photo."
+      },
+      "iconUrl": "https://rainbowtree.work/apps/icons/komashashin.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6794382172",
+      "bundleId": "work.rainbowtree.KomaShashin"
+    },
+    {
+      "id": "rtinpainting",
+      "name": {
+        "ja": "AI消しゴム - 写真から不要物を削除",
+        "en": "AI Eraser - Remove Objects"
+      },
+      "description": {
+        "ja": "【AI消しゴム】は、最先端のAI技術を活用して写真から不要なオブジェクトを自然に消去できるアプリです。",
+        "en": "AI Eraser is a powerful photo editing app that uses cutting-"
       },
       "iconUrl": "https://rainbowtree.work/apps/icons/rtinpainting.png",
       "appStoreUrl": "https://apps.apple.com/app/id6757261885",
       "bundleId": "work.rainbowtree.RTInpainting"
     },
     {
-      "id": "rtclipsmart",
+      "id": "shirokurokako",
       "name": {
-        "ja": "動画圧縮",
-        "en": "Video Compressor"
+        "ja": "かんたん白黒加工 - モノクロ・一色残しカメラ",
+        "en": "Mono Splash: B&W Photo Editor"
       },
       "description": {
-        "ja": "動画を簡単に圧縮・変換",
-        "en": "Easily compress and convert videos"
+        "ja": "写真を、おしゃれなモノクロに。",
+        "en": "Turn your photos into chic monochrome — and keep just the co"
       },
-      "iconUrl": "https://rainbowtree.work/apps/icons/rtclipsmart.png",
-      "appStoreUrl": "https://apps.apple.com/app/id6757363360",
-      "bundleId": "work.rainbowtree.clipsmart"
-    },
-    {
-      "id": "voicalc",
-      "name": {
-        "ja": "音声電卓",
-        "en": "Voice Calculator"
-      },
-      "description": {
-        "ja": "声で計算できる電卓アプリ",
-        "en": "Voice-powered calculator app"
-      },
-      "iconUrl": "https://rainbowtree.work/apps/icons/voicalc.png",
-      "appStoreUrl": "https://apps.apple.com/app/id6757627358",
-      "bundleId": "work.rainbowtree.soundcalc"
-    },
-    {
-      "id": "rtenvelopbudget",
-      "name": {
-        "ja": "袋分け家計簿",
-        "en": "Envelope Budget"
-      },
-      "description": {
-        "ja": "袋分けで簡単家計管理",
-        "en": "Easy envelope budgeting"
-      },
-      "iconUrl": "https://rainbowtree.work/apps/icons/rtenvelopbudget.png",
-      "appStoreUrl": "https://apps.apple.com/app/id6748582009",
-      "bundleId": "work.rainbowtree.RTEnvelopBudget"
+      "iconUrl": "https://rainbowtree.work/apps/icons/shirokurokako.png",
+      "appStoreUrl": "https://apps.apple.com/app/id6794166140",
+      "bundleId": "work.rainbowtree.ShirokuroKako"
     }
   ]
 }
