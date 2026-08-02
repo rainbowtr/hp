@@ -82,6 +82,17 @@ h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:52px 0 14px;
 .tag{font-size:10.5px;letter-spacing:.04em;padding:2px 7px;border-radius:3px;
   background:var(--indigo-pale);color:var(--indigo)}
 .tag.gen-old{background:#ECEDEA;color:var(--ink2)}
+/* 数値そのものが答えになる項目（親等・命日からの日数）。等幅で「値」だと分かる形に */
+.tag.badge{background:var(--ink);color:#fff;font-family:var(--mono);letter-spacing:0}
+/* 図版を持たないデータ（分別・続柄・年忌）。記号が無いぶん見出しを主役にする。
+   ★件数が多い（分別は537件）ので列を詰める。1枚が短いのに3列だと縦に伸びすぎる。
+   ★.card.nofig(0,2,0) は .card[hidden](0,2,0) と同点で後勝ちしてしまうので、
+     [hidden] 側を明示的に強くしておく（これが無いと絞り込みが効かない）。 */
+.grid.compact{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.card.nofig{display:block;padding:13px 15px}
+.card.nofig[hidden]{display:none}
+.card.nofig h3{font-size:16px;margin:0 0 4px}
+.card.nofig .plain{margin:0}
 .card h3{font-size:15.5px;font-weight:700;margin:0 0 7px;line-height:1.5}
 .meaning{font-size:14px;margin:0 0 6px}
 .plain{font-size:13px;color:var(--ink2);margin:0 0 10px}
@@ -142,44 +153,32 @@ footer a{color:var(--ink2)}
 <main class="wrap">
   <h1>{{H1}}</h1>
   <p class="lead">{{LEAD}}</p>
-  <p class="counts">新JIS（2016年〜）{{COUNT_NEW}}種・旧JIS（2016年より前）{{COUNT_OLD}}種、あわせて全記号を載せています。</p>
+  <p class="counts">{{COUNTS}}</p>
 
   <div class="tools">
-    <input class="search" id="q" type="search" placeholder="記号の名前や「乾燥機」「アイロン」などで探す" autocomplete="off">
-    <p class="legend">タグの記号は左からこの順に並びます。押すと絞り込めます。</p>
+    <input class="search" id="q" type="search" placeholder="{{SEARCH_PLACEHOLDER}}" autocomplete="off">
+    <p class="legend">{{LEGEND}}</p>
     <div class="chips" id="chips">
       <button class="chip" data-filter="all" data-value="all" aria-pressed="true">すべて</button>
       {{CHIPS}}
-      <button class="chip" data-filter="gen" data-value="new">新JISだけ</button>
-      <button class="chip" data-filter="gen" data-value="old">旧JISだけ</button>
     </div>
   </div>
 
-  <div class="grid" id="grid">
+  <div class="{{GRID_CLASS}}" id="grid">
     {{CARDS}}
   </div>
   <p class="empty" id="empty" hidden>あてはまる記号が見つかりませんでした。別の言葉でお試しください。</p>
 
-  <h2>古い表示は、新しいどの記号にあたるか</h2>
-  <div class="tablewrap">
-    <table><tbody>
-      {{MAPPING_ROWS}}
-    </tbody></table>
-  </div>
+  {{MAPPING}}
 
-  <div class="appbox">
-    <h2>タグを見ても分からないときは</h2>
-    <p>{{APP_PITCH}}</p>
-    <a class="appbadge" href="{{APP_URL}}"><img src="/images/app-store-badge-ja.svg" alt="{{APP_NAME}}を App Store でダウンロード" width="147" height="54"></a>
-  </div>
+  {{APPBOX}}
 
   <h2>よくある質問</h2>
   {{FAQ}}
 </main>
 
 <footer class="wrap">
-  <p>出典: JIS L0001／消費者庁「新しい洗濯表示」。記号の解説は一般的な取り扱いの目安です。<br>
-  実際の洗い方は、衣類についている表示と販売店の案内に従ってください。</p>
+  <p>{{FOOTNOTE}}</p>
   <p><a href="/">RAINBOW TREE 合同会社</a>　<a href="/privacy_policy.html">プライバシーポリシー</a></p>
 </footer>
 

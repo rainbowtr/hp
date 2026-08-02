@@ -82,6 +82,17 @@ h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:52px 0 14px;
 .tag{font-size:10.5px;letter-spacing:.04em;padding:2px 7px;border-radius:3px;
   background:var(--indigo-pale);color:var(--indigo)}
 .tag.gen-old{background:#ECEDEA;color:var(--ink2)}
+/* 数値そのものが答えになる項目（親等・命日からの日数）。等幅で「値」だと分かる形に */
+.tag.badge{background:var(--ink);color:#fff;font-family:var(--mono);letter-spacing:0}
+/* 図版を持たないデータ（分別・続柄・年忌）。記号が無いぶん見出しを主役にする。
+   ★件数が多い（分別は537件）ので列を詰める。1枚が短いのに3列だと縦に伸びすぎる。
+   ★.card.nofig(0,2,0) は .card[hidden](0,2,0) と同点で後勝ちしてしまうので、
+     [hidden] 側を明示的に強くしておく（これが無いと絞り込みが効かない）。 */
+.grid.compact{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.card.nofig{display:block;padding:13px 15px}
+.card.nofig[hidden]{display:none}
+.card.nofig h3{font-size:16px;margin:0 0 4px}
+.card.nofig .plain{margin:0}
 .card h3{font-size:15.5px;font-weight:700;margin:0 0 7px;line-height:1.5}
 .meaning{font-size:14px;margin:0 0 6px}
 .plain{font-size:13px;color:var(--ink2);margin:0 0 10px}
@@ -154,16 +165,16 @@ footer a{color:var(--ink2)}
 <button class="chip" data-filter="cat" data-value="dry">乾かす（四角）</button>
 <button class="chip" data-filter="cat" data-value="iron">アイロン</button>
 <button class="chip" data-filter="cat" data-value="clean">クリーニング（丸）</button>
-      <button class="chip" data-filter="gen" data-value="new">新JISだけ</button>
-      <button class="chip" data-filter="gen" data-value="old">旧JISだけ</button>
+<button class="chip" data-filter="gen" data-value="new">新JISだけ</button>
+<button class="chip" data-filter="gen" data-value="old">旧JISだけ</button>
     </div>
   </div>
 
   <div class="grid" id="grid">
     <article class="card" id="wash_95" data-cat="wash" data-gen="new" data-q="95℃限度・洗濯機 液温95℃を限度に洗濯機で洗えます 熱に強い白物リネンなど。ふつうの洗濯物ではほぼ見かけません。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_95.svg" alt="95℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_95.svg" alt="95℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>95℃限度・洗濯機</h3>
     <p class="meaning">液温95℃を限度に洗濯機で洗えます</p>
     <p class="plain">熱に強い白物リネンなど。ふつうの洗濯物ではほぼ見かけません。</p>
@@ -172,9 +183,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_70" data-cat="wash" data-gen="new" data-q="70℃限度・洗濯機 液温70℃を限度に洗濯機で洗えます 業務用の高温洗いを想定した表示です。家庭では60℃以下で十分です。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_70.svg" alt="70℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_70.svg" alt="70℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>70℃限度・洗濯機</h3>
     <p class="meaning">液温70℃を限度に洗濯機で洗えます</p>
     <p class="plain">業務用の高温洗いを想定した表示です。家庭では60℃以下で十分です。</p>
@@ -183,9 +194,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_60" data-cat="wash" data-gen="new" data-q="60℃限度・洗濯機 液温60℃を限度に洗濯機で洗えます お湯を使った洗濯もOK。皮脂汚れの多いタオルや肌着向けです。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_60.svg" alt="60℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_60.svg" alt="60℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>60℃限度・洗濯機</h3>
     <p class="meaning">液温60℃を限度に洗濯機で洗えます</p>
     <p class="plain">お湯を使った洗濯もOK。皮脂汚れの多いタオルや肌着向けです。</p>
@@ -194,9 +205,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_60_mild" data-cat="wash" data-gen="new" data-q="60℃限度・弱い洗濯 液温60℃を限度に、弱い操作で洗濯機洗いできます 60℃までのお湯は使えますが、弱コース（おしゃれ着コース）で洗ってください。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_60_mild.svg" alt="60℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_60_mild.svg" alt="60℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>60℃限度・弱い洗濯</h3>
     <p class="meaning">液温60℃を限度に、弱い操作で洗濯機洗いできます</p>
     <p class="plain">60℃までのお湯は使えますが、弱コース（おしゃれ着コース）で洗ってください。</p>
@@ -205,9 +216,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_50" data-cat="wash" data-gen="new" data-q="50℃限度・洗濯機 液温50℃を限度に洗濯機で洗えます 50℃までのお湯洗いOK。通常コースで洗えます。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_50.svg" alt="50℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_50.svg" alt="50℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>50℃限度・洗濯機</h3>
     <p class="meaning">液温50℃を限度に洗濯機で洗えます</p>
     <p class="plain">50℃までのお湯洗いOK。通常コースで洗えます。</p>
@@ -216,9 +227,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_50_mild" data-cat="wash" data-gen="new" data-q="50℃限度・弱い洗濯 液温50℃を限度に、弱い操作で洗濯機洗いできます 50℃までのお湯が使えますが、弱コースで洗ってください。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_50_mild.svg" alt="50℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_50_mild.svg" alt="50℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>50℃限度・弱い洗濯</h3>
     <p class="meaning">液温50℃を限度に、弱い操作で洗濯機洗いできます</p>
     <p class="plain">50℃までのお湯が使えますが、弱コースで洗ってください。</p>
@@ -227,9 +238,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_40" data-cat="wash" data-gen="new" data-q="40℃限度・洗濯機 液温40℃を限度に洗濯機で洗えます いちばんよく見る記号。ふつうに洗濯機で洗えます。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_40.svg" alt="40℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_40.svg" alt="40℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>40℃限度・洗濯機</h3>
     <p class="meaning">液温40℃を限度に洗濯機で洗えます</p>
     <p class="plain">いちばんよく見る記号。ふつうに洗濯機で洗えます。</p>
@@ -238,9 +249,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_40_mild" data-cat="wash" data-gen="new" data-q="40℃限度・弱い洗濯 液温40℃を限度に、弱い操作で洗濯機洗いできます 洗濯機OKですが、弱コース（おしゃれ着コース）を選んでください。洗濯ネット推奨。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_40_mild.svg" alt="40℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_40_mild.svg" alt="40℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>40℃限度・弱い洗濯</h3>
     <p class="meaning">液温40℃を限度に、弱い操作で洗濯機洗いできます</p>
     <p class="plain">洗濯機OKですが、弱コース（おしゃれ着コース）を選んでください。洗濯ネット推奨。</p>
@@ -249,9 +260,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_40_very_mild" data-cat="wash" data-gen="new" data-q="40℃限度・非常に弱い洗濯 液温40℃を限度に、非常に弱い操作で洗濯機洗いできます デリケート素材。ドライコースなど最も弱い水流で、洗濯ネットに入れて洗ってください。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_40_very_mild.svg" alt="40℃限度・非常に弱い洗濯の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_40_very_mild.svg" alt="40℃限度・非常に弱い洗濯の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>40℃限度・非常に弱い洗濯</h3>
     <p class="meaning">液温40℃を限度に、非常に弱い操作で洗濯機洗いできます</p>
     <p class="plain">デリケート素材。ドライコースなど最も弱い水流で、洗濯ネットに入れて洗ってください。</p>
@@ -260,9 +271,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_30" data-cat="wash" data-gen="new" data-q="30℃限度・洗濯機 液温30℃を限度に洗濯機で洗えます 水かぬるま湯で。通常コースで洗えますが、お湯は使わないでください。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_30.svg" alt="30℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_30.svg" alt="30℃限度・洗濯機の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>30℃限度・洗濯機</h3>
     <p class="meaning">液温30℃を限度に洗濯機で洗えます</p>
     <p class="plain">水かぬるま湯で。通常コースで洗えますが、お湯は使わないでください。</p>
@@ -271,9 +282,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_30_mild" data-cat="wash" data-gen="new" data-q="30℃限度・弱い洗濯 液温30℃を限度に、弱い操作で洗濯機洗いできます 水かぬるま湯で、弱コース（おしゃれ着コース）で洗ってください。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_30_mild.svg" alt="30℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_30_mild.svg" alt="30℃限度・弱い洗濯の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>30℃限度・弱い洗濯</h3>
     <p class="meaning">液温30℃を限度に、弱い操作で洗濯機洗いできます</p>
     <p class="plain">水かぬるま湯で、弱コース（おしゃれ着コース）で洗ってください。</p>
@@ -282,9 +293,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_30_very_mild" data-cat="wash" data-gen="new" data-q="30℃限度・非常に弱い洗濯 液温30℃を限度に、非常に弱い操作で洗濯機洗いできます デリケート素材。水で、最も弱い水流・短時間で。洗濯ネット必須です。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_30_very_mild.svg" alt="30℃限度・非常に弱い洗濯の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_30_very_mild.svg" alt="30℃限度・非常に弱い洗濯の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>30℃限度・非常に弱い洗濯</h3>
     <p class="meaning">液温30℃を限度に、非常に弱い操作で洗濯機洗いできます</p>
     <p class="plain">デリケート素材。水で、最も弱い水流・短時間で。洗濯ネット必須です。</p>
@@ -293,9 +304,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_hand" data-cat="wash" data-gen="new" data-q="手洗い 液温40℃を限度に手洗いできます 洗濯機は使わず、押し洗いでやさしく。洗濯機の「手洗いコース」も目安になりますが、心配なら手で。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_hand.svg" alt="手洗いの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_hand.svg" alt="手洗いの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>手洗い</h3>
     <p class="meaning">液温40℃を限度に手洗いできます</p>
     <p class="plain">洗濯機は使わず、押し洗いでやさしく。洗濯機の「手洗いコース」も目安になりますが、心配なら手で。</p>
@@ -304,9 +315,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wash_none" data-cat="wash" data-gen="new" data-q="家庭洗濯不可 家庭での洗濯はできません 水洗いすると縮み・型くずれの恐れ。クリーニング店に相談してください（クリーニング記号を確認）。 洗う（おけ） 新JIS">
-  <div class="figure"><img src="symbols/wash_none.svg" alt="家庭洗濯不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wash_none.svg" alt="家庭洗濯不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-new">新JIS</span></div>
     <h3>家庭洗濯不可</h3>
     <p class="meaning">家庭での洗濯はできません</p>
     <p class="plain">水洗いすると縮み・型くずれの恐れ。クリーニング店に相談してください（クリーニング記号を確認）。</p>
@@ -315,9 +326,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wash_95" data-cat="wash" data-gen="old" data-q="（旧）洗濯機95℃ 液温95℃を限度に洗濯機で洗えます 2016年以前の表示です。新表示の「95」と同じ意味です。 洗う（おけ） 旧JIS">
-  <div class="figure"><img src="symbols/old_wash_95.svg" alt="（旧）洗濯機95℃の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wash_95.svg" alt="（旧）洗濯機95℃の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）洗濯機95℃</h3>
     <p class="meaning">液温95℃を限度に洗濯機で洗えます</p>
     <p class="plain">2016年以前の表示です。新表示の「95」と同じ意味です。</p>
@@ -326,9 +337,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wash_60" data-cat="wash" data-gen="old" data-q="（旧）洗濯機60℃ 液温60℃を限度に洗濯機で洗えます 2016年以前の表示です。新表示の「60」と同じ意味です。 洗う（おけ） 旧JIS">
-  <div class="figure"><img src="symbols/old_wash_60.svg" alt="（旧）洗濯機60℃の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wash_60.svg" alt="（旧）洗濯機60℃の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）洗濯機60℃</h3>
     <p class="meaning">液温60℃を限度に洗濯機で洗えます</p>
     <p class="plain">2016年以前の表示です。新表示の「60」と同じ意味です。</p>
@@ -337,9 +348,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wash_40" data-cat="wash" data-gen="old" data-q="（旧）洗濯機40℃ 液温40℃を限度に洗濯機で洗えます 2016年以前の表示です。新表示の「40」と同じ意味です。 洗う（おけ） 旧JIS">
-  <div class="figure"><img src="symbols/old_wash_40.svg" alt="（旧）洗濯機40℃の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wash_40.svg" alt="（旧）洗濯機40℃の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）洗濯機40℃</h3>
     <p class="meaning">液温40℃を限度に洗濯機で洗えます</p>
     <p class="plain">2016年以前の表示です。新表示の「40」と同じ意味です。</p>
@@ -348,9 +359,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wash_40_mild" data-cat="wash" data-gen="old" data-q="（旧）洗濯機40℃・弱 液温40℃を限度に、弱い水流で洗濯機洗いできます 「弱」表記の旧記号。新表示の「40＋下線1本」と同じで、弱コースで洗います。 洗う（おけ） 旧JIS">
-  <div class="figure"><img src="symbols/old_wash_40_mild.svg" alt="（旧）洗濯機40℃・弱の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wash_40_mild.svg" alt="（旧）洗濯機40℃・弱の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）洗濯機40℃・弱</h3>
     <p class="meaning">液温40℃を限度に、弱い水流で洗濯機洗いできます</p>
     <p class="plain">「弱」表記の旧記号。新表示の「40＋下線1本」と同じで、弱コースで洗います。</p>
@@ -359,9 +370,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wash_30_mild" data-cat="wash" data-gen="old" data-q="（旧）洗濯機30℃・弱 液温30℃を限度に、弱い水流で洗濯機洗いできます 水かぬるま湯で弱コース。新表示の「30＋下線1本」と同じ意味です。 洗う（おけ） 旧JIS">
-  <div class="figure"><img src="symbols/old_wash_30_mild.svg" alt="（旧）洗濯機30℃・弱の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wash_30_mild.svg" alt="（旧）洗濯機30℃・弱の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）洗濯機30℃・弱</h3>
     <p class="meaning">液温30℃を限度に、弱い水流で洗濯機洗いできます</p>
     <p class="plain">水かぬるま湯で弱コース。新表示の「30＋下線1本」と同じ意味です。</p>
@@ -370,9 +381,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wash_hand_30" data-cat="wash" data-gen="old" data-q="（旧）手洗イ30℃ 液温30℃を限度に手洗いできます（洗濯機不可） 「手洗イ」表記の旧記号。押し洗いでやさしく洗ってください。 洗う（おけ） 旧JIS">
-  <div class="figure"><img src="symbols/old_wash_hand_30.svg" alt="（旧）手洗イ30℃の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wash_hand_30.svg" alt="（旧）手洗イ30℃の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）手洗イ30℃</h3>
     <p class="meaning">液温30℃を限度に手洗いできます（洗濯機不可）</p>
     <p class="plain">「手洗イ」表記の旧記号。押し洗いでやさしく洗ってください。</p>
@@ -381,9 +392,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wash_none" data-cat="wash" data-gen="old" data-q="（旧）洗濯不可 家庭では洗濯できません 水洗いNGの旧記号。クリーニング店に相談してください。 洗う（おけ） 旧JIS">
-  <div class="figure"><img src="symbols/old_wash_none.svg" alt="（旧）洗濯不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wash_none.svg" alt="（旧）洗濯不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-wash">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">洗う（おけ）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）洗濯不可</h3>
     <p class="meaning">家庭では洗濯できません</p>
     <p class="plain">水洗いNGの旧記号。クリーニング店に相談してください。</p>
@@ -392,9 +403,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="bleach_any" data-cat="bleach" data-gen="new" data-q="塩素系・酸素系漂白OK 塩素系・酸素系どちらの漂白剤も使えます 白物のシミ・黄ばみに塩素系（ハイター等）も酸素系（ワイドハイター等）も使えます。 漂白（三角） 新JIS">
-  <div class="figure"><img src="symbols/bleach_any.svg" alt="塩素系・酸素系漂白OKの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/bleach_any.svg" alt="塩素系・酸素系漂白OKの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-bleach">漂白（三角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">漂白（三角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>塩素系・酸素系漂白OK</h3>
     <p class="meaning">塩素系・酸素系どちらの漂白剤も使えます</p>
     <p class="plain">白物のシミ・黄ばみに塩素系（ハイター等）も酸素系（ワイドハイター等）も使えます。</p>
@@ -403,9 +414,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="bleach_oxygen" data-cat="bleach" data-gen="new" data-q="酸素系漂白のみOK 酸素系漂白剤のみ使えます（塩素系は不可） 色柄物に多い表示。ワイドハイター等の酸素系はOK、ハイター等の塩素系は色落ちするのでNG。 漂白（三角） 新JIS">
-  <div class="figure"><img src="symbols/bleach_oxygen.svg" alt="酸素系漂白のみOKの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/bleach_oxygen.svg" alt="酸素系漂白のみOKの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-bleach">漂白（三角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">漂白（三角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>酸素系漂白のみOK</h3>
     <p class="meaning">酸素系漂白剤のみ使えます（塩素系は不可）</p>
     <p class="plain">色柄物に多い表示。ワイドハイター等の酸素系はOK、ハイター等の塩素系は色落ちするのでNG。</p>
@@ -414,9 +425,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="bleach_none" data-cat="bleach" data-gen="new" data-q="漂白不可 漂白剤は使えません 塩素系も酸素系も使えません。漂白剤入りの洗剤にも注意してください。 漂白（三角） 新JIS">
-  <div class="figure"><img src="symbols/bleach_none.svg" alt="漂白不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/bleach_none.svg" alt="漂白不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-bleach">漂白（三角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">漂白（三角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>漂白不可</h3>
     <p class="meaning">漂白剤は使えません</p>
     <p class="plain">塩素系も酸素系も使えません。漂白剤入りの洗剤にも注意してください。</p>
@@ -425,9 +436,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_bleach_chlorine" data-cat="bleach" data-gen="old" data-q="（旧）エンソサラシ可 塩素系漂白剤が使えます 「エンソサラシ」表記の旧記号。塩素系（ハイター等）が使えます。 漂白（三角） 旧JIS">
-  <div class="figure"><img src="symbols/old_bleach_chlorine.svg" alt="（旧）エンソサラシ可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_bleach_chlorine.svg" alt="（旧）エンソサラシ可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-bleach">漂白（三角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">漂白（三角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）エンソサラシ可</h3>
     <p class="meaning">塩素系漂白剤が使えます</p>
     <p class="plain">「エンソサラシ」表記の旧記号。塩素系（ハイター等）が使えます。</p>
@@ -436,9 +447,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_bleach_none" data-cat="bleach" data-gen="old" data-q="（旧）エンソサラシ不可 塩素系漂白剤は使えません 塩素系はNG。酸素系の可否は表示されていないため、使う場合は目立たない場所で試してください。 漂白（三角） 旧JIS">
-  <div class="figure"><img src="symbols/old_bleach_none.svg" alt="（旧）エンソサラシ不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_bleach_none.svg" alt="（旧）エンソサラシ不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-bleach">漂白（三角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">漂白（三角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）エンソサラシ不可</h3>
     <p class="meaning">塩素系漂白剤は使えません</p>
     <p class="plain">塩素系はNG。酸素系の可否は表示されていないため、使う場合は目立たない場所で試してください。</p>
@@ -447,9 +458,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="tumble_high" data-cat="dry" data-gen="new" data-q="タンブル乾燥OK（高温） タンブル乾燥できます（排気温度80℃上限） 乾燥機OK。ふつうの温度設定で乾かせます。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/tumble_high.svg" alt="タンブル乾燥OK（高温）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/tumble_high.svg" alt="タンブル乾燥OK（高温）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>タンブル乾燥OK（高温）</h3>
     <p class="meaning">タンブル乾燥できます（排気温度80℃上限）</p>
     <p class="plain">乾燥機OK。ふつうの温度設定で乾かせます。</p>
@@ -458,9 +469,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="tumble_low" data-cat="dry" data-gen="new" data-q="タンブル乾燥OK（低温） 低い温度でタンブル乾燥できます（排気温度60℃上限） 乾燥機は低温設定なら使えます。高温は縮みの原因になります。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/tumble_low.svg" alt="タンブル乾燥OK（低温）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/tumble_low.svg" alt="タンブル乾燥OK（低温）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>タンブル乾燥OK（低温）</h3>
     <p class="meaning">低い温度でタンブル乾燥できます（排気温度60℃上限）</p>
     <p class="plain">乾燥機は低温設定なら使えます。高温は縮みの原因になります。</p>
@@ -469,9 +480,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="tumble_none" data-cat="dry" data-gen="new" data-q="タンブル乾燥不可 タンブル乾燥はできません 乾燥機に入れないでください。縮み・傷みの原因です。自然乾燥の記号に従って干してください。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/tumble_none.svg" alt="タンブル乾燥不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/tumble_none.svg" alt="タンブル乾燥不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>タンブル乾燥不可</h3>
     <p class="meaning">タンブル乾燥はできません</p>
     <p class="plain">乾燥機に入れないでください。縮み・傷みの原因です。自然乾燥の記号に従って干してください。</p>
@@ -480,9 +491,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_line" data-cat="dry" data-gen="new" data-q="つり干し つり干しがよい（脱水後、ハンガー等に掛けて干す） ふつうに脱水してからハンガーや物干しに掛けて干します。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_line.svg" alt="つり干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_line.svg" alt="つり干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>つり干し</h3>
     <p class="meaning">つり干しがよい（脱水後、ハンガー等に掛けて干す）</p>
     <p class="plain">ふつうに脱水してからハンガーや物干しに掛けて干します。</p>
@@ -491,9 +502,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_line_shade" data-cat="dry" data-gen="new" data-q="日陰つり干し 日陰でのつり干しがよい 直射日光は色あせの原因。風通しのよい日陰に掛けて干してください。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_line_shade.svg" alt="日陰つり干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_line_shade.svg" alt="日陰つり干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>日陰つり干し</h3>
     <p class="meaning">日陰でのつり干しがよい</p>
     <p class="plain">直射日光は色あせの原因。風通しのよい日陰に掛けて干してください。</p>
@@ -502,9 +513,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_drip_line" data-cat="dry" data-gen="new" data-q="ぬれつり干し 脱水せず、ぬれたままつり干しがよい 脱水・絞りをせず、水がしたたる状態のまま掛けて干します。シワ・型くずれ防止です。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_drip_line.svg" alt="ぬれつり干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_drip_line.svg" alt="ぬれつり干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ぬれつり干し</h3>
     <p class="meaning">脱水せず、ぬれたままつり干しがよい</p>
     <p class="plain">脱水・絞りをせず、水がしたたる状態のまま掛けて干します。シワ・型くずれ防止です。</p>
@@ -513,9 +524,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_drip_line_shade" data-cat="dry" data-gen="new" data-q="日陰ぬれつり干し 脱水せず、日陰でぬれたままつり干しがよい 脱水せずぬれたまま、日陰に掛けて干してください。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_drip_line_shade.svg" alt="日陰ぬれつり干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_drip_line_shade.svg" alt="日陰ぬれつり干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>日陰ぬれつり干し</h3>
     <p class="meaning">脱水せず、日陰でぬれたままつり干しがよい</p>
     <p class="plain">脱水せずぬれたまま、日陰に掛けて干してください。</p>
@@ -524,9 +535,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_flat" data-cat="dry" data-gen="new" data-q="平干し 平干しがよい（平らに広げて干す） ハンガーだと伸びる服（ニット等）。平干しネットや台に広げて干してください。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_flat.svg" alt="平干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_flat.svg" alt="平干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>平干し</h3>
     <p class="meaning">平干しがよい（平らに広げて干す）</p>
     <p class="plain">ハンガーだと伸びる服（ニット等）。平干しネットや台に広げて干してください。</p>
@@ -535,9 +546,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_flat_shade" data-cat="dry" data-gen="new" data-q="日陰平干し 日陰での平干しがよい 日陰で平らに広げて干します。ニットの定番の干し方です。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_flat_shade.svg" alt="日陰平干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_flat_shade.svg" alt="日陰平干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>日陰平干し</h3>
     <p class="meaning">日陰での平干しがよい</p>
     <p class="plain">日陰で平らに広げて干します。ニットの定番の干し方です。</p>
@@ -546,9 +557,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_drip_flat" data-cat="dry" data-gen="new" data-q="ぬれ平干し 脱水せず、ぬれたまま平干しがよい 脱水せず、ぬれたまま平らに広げて干してください。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_drip_flat.svg" alt="ぬれ平干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_drip_flat.svg" alt="ぬれ平干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ぬれ平干し</h3>
     <p class="meaning">脱水せず、ぬれたまま平干しがよい</p>
     <p class="plain">脱水せず、ぬれたまま平らに広げて干してください。</p>
@@ -557,9 +568,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dry_drip_flat_shade" data-cat="dry" data-gen="new" data-q="日陰ぬれ平干し 脱水せず、日陰でぬれたまま平干しがよい 最もデリケートな干し方指定。脱水せずぬれたまま、日陰で平らに広げて干します。 乾かす（四角） 新JIS">
-  <div class="figure"><img src="symbols/dry_drip_flat_shade.svg" alt="日陰ぬれ平干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dry_drip_flat_shade.svg" alt="日陰ぬれ平干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-new">新JIS</span></div>
     <h3>日陰ぬれ平干し</h3>
     <p class="meaning">脱水せず、日陰でぬれたまま平干しがよい</p>
     <p class="plain">最もデリケートな干し方指定。脱水せずぬれたまま、日陰で平らに広げて干します。</p>
@@ -568,9 +579,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wring_weak" data-cat="dry" data-gen="old" data-q="（旧）弱く絞る 手絞りは弱く、遠心脱水は短時間で 旧表示だけにある絞り方の記号。新表示では廃止され、ぬれ干し記号で表現されます。 乾かす（四角） 旧JIS">
-  <div class="figure"><img src="symbols/old_wring_weak.svg" alt="（旧）弱く絞るの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wring_weak.svg" alt="（旧）弱く絞るの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）弱く絞る</h3>
     <p class="meaning">手絞りは弱く、遠心脱水は短時間で</p>
     <p class="plain">旧表示だけにある絞り方の記号。新表示では廃止され、ぬれ干し記号で表現されます。</p>
@@ -579,9 +590,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_wring_none" data-cat="dry" data-gen="old" data-q="（旧）絞り不可 絞ってはいけません 脱水・絞りNG。新表示の「ぬれつり干し」に相当し、ぬれたまま干します。 乾かす（四角） 旧JIS">
-  <div class="figure"><img src="symbols/old_wring_none.svg" alt="（旧）絞り不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_wring_none.svg" alt="（旧）絞り不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）絞り不可</h3>
     <p class="meaning">絞ってはいけません</p>
     <p class="plain">脱水・絞りNG。新表示の「ぬれつり干し」に相当し、ぬれたまま干します。</p>
@@ -590,9 +601,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_dry_line" data-cat="dry" data-gen="old" data-q="（旧）つり干し つり干しがよい ハンガー等に掛けて干す旧記号。新表示の「四角＋縦線」と同じ意味です。 乾かす（四角） 旧JIS">
-  <div class="figure"><img src="symbols/old_dry_line.svg" alt="（旧）つり干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_dry_line.svg" alt="（旧）つり干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）つり干し</h3>
     <p class="meaning">つり干しがよい</p>
     <p class="plain">ハンガー等に掛けて干す旧記号。新表示の「四角＋縦線」と同じ意味です。</p>
@@ -601,9 +612,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_dry_line_shade" data-cat="dry" data-gen="old" data-q="（旧）日陰つり干し 日陰でのつり干しがよい 直射日光を避けて掛けて干す旧記号です。 乾かす（四角） 旧JIS">
-  <div class="figure"><img src="symbols/old_dry_line_shade.svg" alt="（旧）日陰つり干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_dry_line_shade.svg" alt="（旧）日陰つり干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）日陰つり干し</h3>
     <p class="meaning">日陰でのつり干しがよい</p>
     <p class="plain">直射日光を避けて掛けて干す旧記号です。</p>
@@ -612,9 +623,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_dry_flat" data-cat="dry" data-gen="old" data-q="（旧）平干し 平干しがよい 平らに広げて干す旧記号。ニット等の型くずれ防止です。 乾かす（四角） 旧JIS">
-  <div class="figure"><img src="symbols/old_dry_flat.svg" alt="（旧）平干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_dry_flat.svg" alt="（旧）平干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）平干し</h3>
     <p class="meaning">平干しがよい</p>
     <p class="plain">平らに広げて干す旧記号。ニット等の型くずれ防止です。</p>
@@ -623,9 +634,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_dry_flat_shade" data-cat="dry" data-gen="old" data-q="（旧）日陰平干し 日陰での平干しがよい 日陰で平らに広げて干す旧記号です。 乾かす（四角） 旧JIS">
-  <div class="figure"><img src="symbols/old_dry_flat_shade.svg" alt="（旧）日陰平干しの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_dry_flat_shade.svg" alt="（旧）日陰平干しの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-dry">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">乾かす（四角）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）日陰平干し</h3>
     <p class="meaning">日陰での平干しがよい</p>
     <p class="plain">日陰で平らに広げて干す旧記号です。</p>
@@ -634,9 +645,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="iron_200" data-cat="iron" data-gen="new" data-q="アイロンOK（高温） 底面温度200℃を限度にアイロンできます 綿・麻など。高温設定までOKです。 アイロン 新JIS">
-  <div class="figure"><img src="symbols/iron_200.svg" alt="アイロンOK（高温）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/iron_200.svg" alt="アイロンOK（高温）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-new">新JIS</span></div>
     <h3>アイロンOK（高温）</h3>
     <p class="meaning">底面温度200℃を限度にアイロンできます</p>
     <p class="plain">綿・麻など。高温設定までOKです。</p>
@@ -645,9 +656,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="iron_150" data-cat="iron" data-gen="new" data-q="アイロンOK（中温） 底面温度150℃を限度にアイロンできます ポリエステル・ウールなど。中温設定までにしてください。 アイロン 新JIS">
-  <div class="figure"><img src="symbols/iron_150.svg" alt="アイロンOK（中温）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/iron_150.svg" alt="アイロンOK（中温）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-new">新JIS</span></div>
     <h3>アイロンOK（中温）</h3>
     <p class="meaning">底面温度150℃を限度にアイロンできます</p>
     <p class="plain">ポリエステル・ウールなど。中温設定までにしてください。</p>
@@ -656,9 +667,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="iron_110" data-cat="iron" data-gen="new" data-q="アイロンOK（低温・スチームなし） 底面温度110℃を限度に、スチームなしでアイロンできます アクリル・ナイロンなど熱に弱い素材。低温で、スチームは使わないでください。 アイロン 新JIS">
-  <div class="figure"><img src="symbols/iron_110.svg" alt="アイロンOK（低温・スチームなし）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/iron_110.svg" alt="アイロンOK（低温・スチームなし）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-new">新JIS</span></div>
     <h3>アイロンOK（低温・スチームなし）</h3>
     <p class="meaning">底面温度110℃を限度に、スチームなしでアイロンできます</p>
     <p class="plain">アクリル・ナイロンなど熱に弱い素材。低温で、スチームは使わないでください。</p>
@@ -667,9 +678,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="iron_none" data-cat="iron" data-gen="new" data-q="アイロン不可 アイロンはかけられません 熱で溶けたりテカリが出る素材です。シワはスチーマーも避け、干し方で防いでください。 アイロン 新JIS">
-  <div class="figure"><img src="symbols/iron_none.svg" alt="アイロン不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/iron_none.svg" alt="アイロン不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-new">新JIS</span></div>
     <h3>アイロン不可</h3>
     <p class="meaning">アイロンはかけられません</p>
     <p class="plain">熱で溶けたりテカリが出る素材です。シワはスチーマーも避け、干し方で防いでください。</p>
@@ -678,9 +689,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_iron_high" data-cat="iron" data-gen="old" data-q="（旧）アイロン高 180〜210℃（高温）でアイロンできます 「高」表記の旧記号。新表示の点3つ（200℃まで）に相当します。 アイロン 旧JIS">
-  <div class="figure"><img src="symbols/old_iron_high.svg" alt="（旧）アイロン高の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_iron_high.svg" alt="（旧）アイロン高の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）アイロン高</h3>
     <p class="meaning">180〜210℃（高温）でアイロンできます</p>
     <p class="plain">「高」表記の旧記号。新表示の点3つ（200℃まで）に相当します。</p>
@@ -689,9 +700,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_iron_mid" data-cat="iron" data-gen="old" data-q="（旧）アイロン中 140〜160℃（中温）でアイロンできます 「中」表記の旧記号。新表示の点2つ（150℃まで）に相当します。 アイロン 旧JIS">
-  <div class="figure"><img src="symbols/old_iron_mid.svg" alt="（旧）アイロン中の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_iron_mid.svg" alt="（旧）アイロン中の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）アイロン中</h3>
     <p class="meaning">140〜160℃（中温）でアイロンできます</p>
     <p class="plain">「中」表記の旧記号。新表示の点2つ（150℃まで）に相当します。</p>
@@ -700,9 +711,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_iron_low" data-cat="iron" data-gen="old" data-q="（旧）アイロン低 80〜120℃（低温）でアイロンできます 「低」表記の旧記号。新表示の点1つ（110℃まで）に相当します。あて布推奨。 アイロン 旧JIS">
-  <div class="figure"><img src="symbols/old_iron_low.svg" alt="（旧）アイロン低の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_iron_low.svg" alt="（旧）アイロン低の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）アイロン低</h3>
     <p class="meaning">80〜120℃（低温）でアイロンできます</p>
     <p class="plain">「低」表記の旧記号。新表示の点1つ（110℃まで）に相当します。あて布推奨。</p>
@@ -711,9 +722,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_iron_none" data-cat="iron" data-gen="old" data-q="（旧）アイロン不可 アイロンはかけられません アイロンNGの旧記号です。 アイロン 旧JIS">
-  <div class="figure"><img src="symbols/old_iron_none.svg" alt="（旧）アイロン不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_iron_none.svg" alt="（旧）アイロン不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-iron">アイロン</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">アイロン</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）アイロン不可</h3>
     <p class="meaning">アイロンはかけられません</p>
     <p class="plain">アイロンNGの旧記号です。</p>
@@ -722,9 +733,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dryclean_p" data-cat="clean" data-gen="new" data-q="ドライクリーニングOK（P） パークロロエチレン及び石油系溶剤でドライクリーニングできます クリーニング店に出せます。店への指示記号なので、家庭では特にすることはありません。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/dryclean_p.svg" alt="ドライクリーニングOK（P）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dryclean_p.svg" alt="ドライクリーニングOK（P）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ドライクリーニングOK（P）</h3>
     <p class="meaning">パークロロエチレン及び石油系溶剤でドライクリーニングできます</p>
     <p class="plain">クリーニング店に出せます。店への指示記号なので、家庭では特にすることはありません。</p>
@@ -733,9 +744,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dryclean_p_mild" data-cat="clean" data-gen="new" data-q="ドライクリーニングOK（P・弱い） パークロロエチレン及び石油系溶剤で、弱いドライクリーニングができます クリーニング店に出せます（弱い処理指定）。受付でタグを見せれば大丈夫です。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/dryclean_p_mild.svg" alt="ドライクリーニングOK（P・弱い）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dryclean_p_mild.svg" alt="ドライクリーニングOK（P・弱い）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ドライクリーニングOK（P・弱い）</h3>
     <p class="meaning">パークロロエチレン及び石油系溶剤で、弱いドライクリーニングができます</p>
     <p class="plain">クリーニング店に出せます（弱い処理指定）。受付でタグを見せれば大丈夫です。</p>
@@ -744,9 +755,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dryclean_f" data-cat="clean" data-gen="new" data-q="ドライクリーニングOK（F・石油系） 石油系溶剤でドライクリーニングできます クリーニング店に出せます（石油系溶剤のみ指定）。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/dryclean_f.svg" alt="ドライクリーニングOK（F・石油系）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dryclean_f.svg" alt="ドライクリーニングOK（F・石油系）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ドライクリーニングOK（F・石油系）</h3>
     <p class="meaning">石油系溶剤でドライクリーニングできます</p>
     <p class="plain">クリーニング店に出せます（石油系溶剤のみ指定）。</p>
@@ -755,9 +766,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dryclean_f_mild" data-cat="clean" data-gen="new" data-q="ドライクリーニングOK（F・弱い） 石油系溶剤で、弱いドライクリーニングができます クリーニング店に出せます（石油系・弱い処理指定）。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/dryclean_f_mild.svg" alt="ドライクリーニングOK（F・弱い）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dryclean_f_mild.svg" alt="ドライクリーニングOK（F・弱い）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ドライクリーニングOK（F・弱い）</h3>
     <p class="meaning">石油系溶剤で、弱いドライクリーニングができます</p>
     <p class="plain">クリーニング店に出せます（石油系・弱い処理指定）。</p>
@@ -766,9 +777,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="dryclean_none" data-cat="clean" data-gen="new" data-q="ドライクリーニング不可 ドライクリーニングはできません ドライクリーニングNG。洗濯記号とウェットクリーニング記号で洗い方を確認してください。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/dryclean_none.svg" alt="ドライクリーニング不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/dryclean_none.svg" alt="ドライクリーニング不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ドライクリーニング不可</h3>
     <p class="meaning">ドライクリーニングはできません</p>
     <p class="plain">ドライクリーニングNG。洗濯記号とウェットクリーニング記号で洗い方を確認してください。</p>
@@ -777,9 +788,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wetclean_w" data-cat="clean" data-gen="new" data-q="ウェットクリーニングOK ウェットクリーニングができます クリーニング店での特殊な水洗い。家庭で洗えるという意味ではありません。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/wetclean_w.svg" alt="ウェットクリーニングOKの洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wetclean_w.svg" alt="ウェットクリーニングOKの洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ウェットクリーニングOK</h3>
     <p class="meaning">ウェットクリーニングができます</p>
     <p class="plain">クリーニング店での特殊な水洗い。家庭で洗えるという意味ではありません。</p>
@@ -788,9 +799,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wetclean_w_mild" data-cat="clean" data-gen="new" data-q="ウェットクリーニングOK（弱い） 弱い操作のウェットクリーニングができます クリーニング店の特殊水洗い（弱い処理指定）。家庭洗濯の可否は洗濯記号を見てください。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/wetclean_w_mild.svg" alt="ウェットクリーニングOK（弱い）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wetclean_w_mild.svg" alt="ウェットクリーニングOK（弱い）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ウェットクリーニングOK（弱い）</h3>
     <p class="meaning">弱い操作のウェットクリーニングができます</p>
     <p class="plain">クリーニング店の特殊水洗い（弱い処理指定）。家庭洗濯の可否は洗濯記号を見てください。</p>
@@ -799,9 +810,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wetclean_w_very_mild" data-cat="clean" data-gen="new" data-q="ウェットクリーニングOK（非常に弱い） 非常に弱い操作のウェットクリーニングができます クリーニング店の特殊水洗い（非常に弱い処理指定）。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/wetclean_w_very_mild.svg" alt="ウェットクリーニングOK（非常に弱い）の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wetclean_w_very_mild.svg" alt="ウェットクリーニングOK（非常に弱い）の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ウェットクリーニングOK（非常に弱い）</h3>
     <p class="meaning">非常に弱い操作のウェットクリーニングができます</p>
     <p class="plain">クリーニング店の特殊水洗い（非常に弱い処理指定）。</p>
@@ -810,9 +821,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="wetclean_none" data-cat="clean" data-gen="new" data-q="ウェットクリーニング不可 ウェットクリーニングはできません クリーニング店の水洗いもNG。ドライクリーニング記号と洗濯記号で扱いを確認してください。 クリーニング（丸） 新JIS">
-  <div class="figure"><img src="symbols/wetclean_none.svg" alt="ウェットクリーニング不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/wetclean_none.svg" alt="ウェットクリーニング不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-new">新JIS</span></div>
     <h3>ウェットクリーニング不可</h3>
     <p class="meaning">ウェットクリーニングはできません</p>
     <p class="plain">クリーニング店の水洗いもNG。ドライクリーニング記号と洗濯記号で扱いを確認してください。</p>
@@ -821,9 +832,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_dryclean_ok" data-cat="clean" data-gen="old" data-q="（旧）ドライ可 ドライクリーニングができます 「ドライ」表記の旧記号。クリーニング店に出せます。 クリーニング（丸） 旧JIS">
-  <div class="figure"><img src="symbols/old_dryclean_ok.svg" alt="（旧）ドライ可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_dryclean_ok.svg" alt="（旧）ドライ可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）ドライ可</h3>
     <p class="meaning">ドライクリーニングができます</p>
     <p class="plain">「ドライ」表記の旧記号。クリーニング店に出せます。</p>
@@ -832,9 +843,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_dryclean_sekiyu" data-cat="clean" data-gen="old" data-q="（旧）ドライ・セキユ系 石油系溶剤でドライクリーニングができます 「セキユ系」表記の旧記号。新表示のFに相当します。 クリーニング（丸） 旧JIS">
-  <div class="figure"><img src="symbols/old_dryclean_sekiyu.svg" alt="（旧）ドライ・セキユ系の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_dryclean_sekiyu.svg" alt="（旧）ドライ・セキユ系の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）ドライ・セキユ系</h3>
     <p class="meaning">石油系溶剤でドライクリーニングができます</p>
     <p class="plain">「セキユ系」表記の旧記号。新表示のFに相当します。</p>
@@ -843,9 +854,9 @@ footer a{color:var(--ink2)}
   </div>
 </article>
 <article class="card" id="old_dryclean_none" data-cat="clean" data-gen="old" data-q="（旧）ドライ不可 ドライクリーニングはできません ドライNGの旧記号。洗濯記号で家庭洗いの可否を確認してください。 クリーニング（丸） 旧JIS">
-  <div class="figure"><img src="symbols/old_dryclean_none.svg" alt="（旧）ドライ不可の洗濯表示マーク" loading="lazy" width="72" height="72"></div>
+  <div class="figure"><img src="figures/old_dryclean_none.svg" alt="（旧）ドライ不可の洗濯表示マーク" loading="lazy" width="88" height="88"></div>
   <div class="body">
-    <div class="tags"><span class="tag cat-clean">クリーニング（丸）</span><span class="tag gen-old">旧JIS</span></div>
+    <div class="tags"><span class="tag cat">クリーニング（丸）</span><span class="tag gen-old">旧JIS</span></div>
     <h3>（旧）ドライ不可</h3>
     <p class="meaning">ドライクリーニングはできません</p>
     <p class="plain">ドライNGの旧記号。洗濯記号で家庭洗いの可否を確認してください。</p>
@@ -857,37 +868,31 @@ footer a{color:var(--ink2)}
   <p class="empty" id="empty" hidden>あてはまる記号が見つかりませんでした。別の言葉でお試しください。</p>
 
   <h2>古い表示は、新しいどの記号にあたるか</h2>
-  <div class="tablewrap">
-    <table><tbody>
-      <tr><td class="old"><a class="minicell" href="#old_wash_95"><img src="symbols/old_wash_95.svg" alt="" width="34" height="34"><span>（旧）洗濯機95℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_95"><img src="symbols/wash_95.svg" alt="" width="34" height="34"><span>95℃限度・洗濯機</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_wash_60"><img src="symbols/old_wash_60.svg" alt="" width="34" height="34"><span>（旧）洗濯機60℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_60"><img src="symbols/wash_60.svg" alt="" width="34" height="34"><span>60℃限度・洗濯機</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_wash_40"><img src="symbols/old_wash_40.svg" alt="" width="34" height="34"><span>（旧）洗濯機40℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_40"><img src="symbols/wash_40.svg" alt="" width="34" height="34"><span>40℃限度・洗濯機</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_wash_40_mild"><img src="symbols/old_wash_40_mild.svg" alt="" width="34" height="34"><span>（旧）洗濯機40℃・弱</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_40_mild"><img src="symbols/wash_40_mild.svg" alt="" width="34" height="34"><span>40℃限度・弱い洗濯</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_wash_30_mild"><img src="symbols/old_wash_30_mild.svg" alt="" width="34" height="34"><span>（旧）洗濯機30℃・弱</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_30_mild"><img src="symbols/wash_30_mild.svg" alt="" width="34" height="34"><span>30℃限度・弱い洗濯</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_wash_hand_30"><img src="symbols/old_wash_hand_30.svg" alt="" width="34" height="34"><span>（旧）手洗イ30℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_hand"><img src="symbols/wash_hand.svg" alt="" width="34" height="34"><span>手洗い</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_wash_none"><img src="symbols/old_wash_none.svg" alt="" width="34" height="34"><span>（旧）洗濯不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_none"><img src="symbols/wash_none.svg" alt="" width="34" height="34"><span>家庭洗濯不可</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_bleach_chlorine"><img src="symbols/old_bleach_chlorine.svg" alt="" width="34" height="34"><span>（旧）エンソサラシ可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#bleach_any"><img src="symbols/bleach_any.svg" alt="" width="34" height="34"><span>塩素系・酸素系漂白OK</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_bleach_none"><img src="symbols/old_bleach_none.svg" alt="" width="34" height="34"><span>（旧）エンソサラシ不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#bleach_oxygen"><img src="symbols/bleach_oxygen.svg" alt="" width="34" height="34"><span>酸素系漂白のみOK</span></a><a class="minicell" href="#bleach_none"><img src="symbols/bleach_none.svg" alt="" width="34" height="34"><span>漂白不可</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_wring_none"><img src="symbols/old_wring_none.svg" alt="" width="34" height="34"><span>（旧）絞り不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_drip_line"><img src="symbols/dry_drip_line.svg" alt="" width="34" height="34"><span>ぬれつり干し</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_dry_line"><img src="symbols/old_dry_line.svg" alt="" width="34" height="34"><span>（旧）つり干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_line"><img src="symbols/dry_line.svg" alt="" width="34" height="34"><span>つり干し</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_dry_line_shade"><img src="symbols/old_dry_line_shade.svg" alt="" width="34" height="34"><span>（旧）日陰つり干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_line_shade"><img src="symbols/dry_line_shade.svg" alt="" width="34" height="34"><span>日陰つり干し</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_dry_flat"><img src="symbols/old_dry_flat.svg" alt="" width="34" height="34"><span>（旧）平干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_flat"><img src="symbols/dry_flat.svg" alt="" width="34" height="34"><span>平干し</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_dry_flat_shade"><img src="symbols/old_dry_flat_shade.svg" alt="" width="34" height="34"><span>（旧）日陰平干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_flat_shade"><img src="symbols/dry_flat_shade.svg" alt="" width="34" height="34"><span>日陰平干し</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_iron_high"><img src="symbols/old_iron_high.svg" alt="" width="34" height="34"><span>（旧）アイロン高</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_200"><img src="symbols/iron_200.svg" alt="" width="34" height="34"><span>アイロンOK（高温）</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_iron_mid"><img src="symbols/old_iron_mid.svg" alt="" width="34" height="34"><span>（旧）アイロン中</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_150"><img src="symbols/iron_150.svg" alt="" width="34" height="34"><span>アイロンOK（中温）</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_iron_low"><img src="symbols/old_iron_low.svg" alt="" width="34" height="34"><span>（旧）アイロン低</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_110"><img src="symbols/iron_110.svg" alt="" width="34" height="34"><span>アイロンOK（低温・スチームなし）</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_iron_none"><img src="symbols/old_iron_none.svg" alt="" width="34" height="34"><span>（旧）アイロン不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_none"><img src="symbols/iron_none.svg" alt="" width="34" height="34"><span>アイロン不可</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_dryclean_ok"><img src="symbols/old_dryclean_ok.svg" alt="" width="34" height="34"><span>（旧）ドライ可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dryclean_p"><img src="symbols/dryclean_p.svg" alt="" width="34" height="34"><span>ドライクリーニングOK（P）</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_dryclean_sekiyu"><img src="symbols/old_dryclean_sekiyu.svg" alt="" width="34" height="34"><span>（旧）ドライ・セキユ系</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dryclean_f"><img src="symbols/dryclean_f.svg" alt="" width="34" height="34"><span>ドライクリーニングOK（F・石油系）</span></a></td></tr>
-<tr><td class="old"><a class="minicell" href="#old_dryclean_none"><img src="symbols/old_dryclean_none.svg" alt="" width="34" height="34"><span>（旧）ドライ不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dryclean_none"><img src="symbols/dryclean_none.svg" alt="" width="34" height="34"><span>ドライクリーニング不可</span></a></td></tr>
-    </tbody></table>
-  </div>
+<div class="tablewrap"><table><tbody>
+<tr><td><a class="minicell" href="#old_wash_95"><img src="figures/old_wash_95.svg" alt="" width="36" height="36"><span>（旧）洗濯機95℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_95"><img src="figures/wash_95.svg" alt="" width="36" height="36"><span>95℃限度・洗濯機</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_wash_60"><img src="figures/old_wash_60.svg" alt="" width="36" height="36"><span>（旧）洗濯機60℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_60"><img src="figures/wash_60.svg" alt="" width="36" height="36"><span>60℃限度・洗濯機</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_wash_40"><img src="figures/old_wash_40.svg" alt="" width="36" height="36"><span>（旧）洗濯機40℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_40"><img src="figures/wash_40.svg" alt="" width="36" height="36"><span>40℃限度・洗濯機</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_wash_40_mild"><img src="figures/old_wash_40_mild.svg" alt="" width="36" height="36"><span>（旧）洗濯機40℃・弱</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_40_mild"><img src="figures/wash_40_mild.svg" alt="" width="36" height="36"><span>40℃限度・弱い洗濯</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_wash_30_mild"><img src="figures/old_wash_30_mild.svg" alt="" width="36" height="36"><span>（旧）洗濯機30℃・弱</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_30_mild"><img src="figures/wash_30_mild.svg" alt="" width="36" height="36"><span>30℃限度・弱い洗濯</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_wash_hand_30"><img src="figures/old_wash_hand_30.svg" alt="" width="36" height="36"><span>（旧）手洗イ30℃</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_hand"><img src="figures/wash_hand.svg" alt="" width="36" height="36"><span>手洗い</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_wash_none"><img src="figures/old_wash_none.svg" alt="" width="36" height="36"><span>（旧）洗濯不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#wash_none"><img src="figures/wash_none.svg" alt="" width="36" height="36"><span>家庭洗濯不可</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_bleach_chlorine"><img src="figures/old_bleach_chlorine.svg" alt="" width="36" height="36"><span>（旧）エンソサラシ可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#bleach_any"><img src="figures/bleach_any.svg" alt="" width="36" height="36"><span>塩素系・酸素系漂白OK</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_bleach_none"><img src="figures/old_bleach_none.svg" alt="" width="36" height="36"><span>（旧）エンソサラシ不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#bleach_oxygen"><img src="figures/bleach_oxygen.svg" alt="" width="36" height="36"><span>酸素系漂白のみOK</span></a><a class="minicell" href="#bleach_none"><img src="figures/bleach_none.svg" alt="" width="36" height="36"><span>漂白不可</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_wring_none"><img src="figures/old_wring_none.svg" alt="" width="36" height="36"><span>（旧）絞り不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_drip_line"><img src="figures/dry_drip_line.svg" alt="" width="36" height="36"><span>ぬれつり干し</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_dry_line"><img src="figures/old_dry_line.svg" alt="" width="36" height="36"><span>（旧）つり干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_line"><img src="figures/dry_line.svg" alt="" width="36" height="36"><span>つり干し</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_dry_line_shade"><img src="figures/old_dry_line_shade.svg" alt="" width="36" height="36"><span>（旧）日陰つり干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_line_shade"><img src="figures/dry_line_shade.svg" alt="" width="36" height="36"><span>日陰つり干し</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_dry_flat"><img src="figures/old_dry_flat.svg" alt="" width="36" height="36"><span>（旧）平干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_flat"><img src="figures/dry_flat.svg" alt="" width="36" height="36"><span>平干し</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_dry_flat_shade"><img src="figures/old_dry_flat_shade.svg" alt="" width="36" height="36"><span>（旧）日陰平干し</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dry_flat_shade"><img src="figures/dry_flat_shade.svg" alt="" width="36" height="36"><span>日陰平干し</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_iron_high"><img src="figures/old_iron_high.svg" alt="" width="36" height="36"><span>（旧）アイロン高</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_200"><img src="figures/iron_200.svg" alt="" width="36" height="36"><span>アイロンOK（高温）</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_iron_mid"><img src="figures/old_iron_mid.svg" alt="" width="36" height="36"><span>（旧）アイロン中</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_150"><img src="figures/iron_150.svg" alt="" width="36" height="36"><span>アイロンOK（中温）</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_iron_low"><img src="figures/old_iron_low.svg" alt="" width="36" height="36"><span>（旧）アイロン低</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_110"><img src="figures/iron_110.svg" alt="" width="36" height="36"><span>アイロンOK（低温・スチームなし）</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_iron_none"><img src="figures/old_iron_none.svg" alt="" width="36" height="36"><span>（旧）アイロン不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#iron_none"><img src="figures/iron_none.svg" alt="" width="36" height="36"><span>アイロン不可</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_dryclean_ok"><img src="figures/old_dryclean_ok.svg" alt="" width="36" height="36"><span>（旧）ドライ可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dryclean_p"><img src="figures/dryclean_p.svg" alt="" width="36" height="36"><span>ドライクリーニングOK（P）</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_dryclean_sekiyu"><img src="figures/old_dryclean_sekiyu.svg" alt="" width="36" height="36"><span>（旧）ドライ・セキユ系</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dryclean_f"><img src="figures/dryclean_f.svg" alt="" width="36" height="36"><span>ドライクリーニングOK（F・石油系）</span></a></td></tr>
+<tr><td><a class="minicell" href="#old_dryclean_none"><img src="figures/old_dryclean_none.svg" alt="" width="36" height="36"><span>（旧）ドライ不可</span></a></td><td class="arrow">→</td><td><a class="minicell" href="#dryclean_none"><img src="figures/dryclean_none.svg" alt="" width="36" height="36"><span>ドライクリーニング不可</span></a></td></tr>
+</tbody></table></div>
 
-  <div class="appbox">
-    <h2>タグを見ても分からないときは</h2>
-    <p>タグの記号が小さくて読めないときや、いくつも並んでいて結局どう洗えばいいのか分からないときは、タグを撮るだけで意味と洗い方をまとめて出すアプリがあります。この早見表と同じ解説がそのまま入っています。</p>
-    <a class="appbadge" href="https://apps.apple.com/jp/app/id6792310575?ct=lp-sentaku-hyoji&amp;mt=8"><img src="/images/app-store-badge-ja.svg" alt="かんたん洗濯表示を App Store でダウンロード" width="147" height="54"></a>
-  </div>
+  <div class="appbox"><h2>タグを見ても分からないときは</h2><p>タグの記号が小さくて読めないときや、いくつも並んでいて結局どう洗えばいいのか分からないときは、タグを撮るだけで意味と洗い方をまとめて出すアプリがあります。この早見表と同じ解説がそのまま入っています。</p><a class="appbadge" href="https://apps.apple.com/jp/app/id6792310575?ct=lp-sentaku-hyoji&amp;mt=8"><img src="/images/app-store-badge-ja.svg" alt="かんたん洗濯表示を App Store でダウンロード" width="147" height="54"></a></div>
 
   <h2>よくある質問</h2>
   <details><summary>洗濯表示はいつ変わったのですか？</summary><div>2016年12月1日から新しい表示（JIS L0001）に変わりました。それより前に買った服には旧表示（JIS L0217）がついています。このページの一覧は新旧どちらも載せていて、上の「旧JISだけ」を押すと古い表示だけを見られます。対応表は「古い表示は、新しいどの記号にあたるか」にあります。</div></details>
@@ -899,8 +904,7 @@ footer a{color:var(--ink2)}
 </main>
 
 <footer class="wrap">
-  <p>出典: JIS L0001／消費者庁「新しい洗濯表示」。記号の解説は一般的な取り扱いの目安です。<br>
-  実際の洗い方は、衣類についている表示と販売店の案内に従ってください。</p>
+  <p>出典: JIS L0001／消費者庁「新しい洗濯表示」。記号の解説は一般的な取り扱いの目安です。<br>実際の洗い方は、衣類についている表示と販売店の案内に従ってください。</p>
   <p><a href="/">RAINBOW TREE 合同会社</a>　<a href="/privacy_policy.html">プライバシーポリシー</a></p>
 </footer>
 

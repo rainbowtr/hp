@@ -1,0 +1,213 @@
+{
+  "_source": "~/projects/Xcode/ShinsekiCho/ShinsekiCho/Domain/Kinship/Services/KinshipResolveService.swift の bloodTerm(path:) / directSpouseTerm / inLawTermAtStart / inLawTermAtEnd から書き起こし。up/down は共通の祖先まで何代さかのぼり、そこから何代下るか。degree = up + down = 親等。",
+  "_warning": "★アプリ側はアルゴリズムで、こちらは表。KinshipResolveService を変えたらこのファイルも見直すこと。名称・よみ・親等はサービスの switch と1対1で対応させてある。",
+  "terms": [
+    {
+      "id": "self",
+      "group": "base",
+      "name": "本人",
+      "reading": "ほんにん",
+      "degree": 0,
+      "path": "自分自身",
+      "note": ""
+    },
+    {
+      "id": "spouse",
+      "group": "spouse",
+      "name": "配偶者（夫・妻）",
+      "reading": "はいぐうしゃ",
+      "degree": 0,
+      "path": "結婚した相手",
+      "note": "配偶者は親等を数えません（0親等）。血のつながりではなく、婚姻による関係です。"
+    },
+    {
+      "id": "parent",
+      "group": "up",
+      "name": "親（父・母）",
+      "reading": "おや",
+      "degree": 1,
+      "path": "自分を生んだ人",
+      "note": "養親子のときは「養父・養母」と呼び分けます。"
+    },
+    {
+      "id": "grandparent",
+      "group": "up",
+      "name": "祖父母（祖父・祖母）",
+      "reading": "そふぼ",
+      "degree": 2,
+      "path": "親の親",
+      "note": ""
+    },
+    {
+      "id": "greatgrandparent",
+      "group": "up",
+      "name": "曾祖父母（曾祖父・曾祖母）",
+      "reading": "そうそふぼ",
+      "degree": 3,
+      "path": "祖父母の親",
+      "note": "「ひいおじいさん・ひいおばあさん」のことです。"
+    },
+    {
+      "id": "greatgreatgrandparent",
+      "group": "up",
+      "name": "高祖父母（高祖父・高祖母）",
+      "reading": "こうそふぼ",
+      "degree": 4,
+      "path": "曾祖父母の親",
+      "note": "「ひいひいおじいさん」。ここまでが正式な呼び名で、これより上は「遠い先祖（n代前）」と数えます。"
+    },
+    {
+      "id": "child",
+      "group": "down",
+      "name": "子（息子・娘）",
+      "reading": "こ",
+      "degree": 1,
+      "path": "自分の子",
+      "note": "養子縁組のときは「養子・養女」と呼び分けます。"
+    },
+    {
+      "id": "grandchild",
+      "group": "down",
+      "name": "孫",
+      "reading": "まご",
+      "degree": 2,
+      "path": "子の子",
+      "note": ""
+    },
+    {
+      "id": "greatgrandchild",
+      "group": "down",
+      "name": "曾孫",
+      "reading": "ひまご",
+      "degree": 3,
+      "path": "孫の子",
+      "note": "「ひまご」。「そうそん」とも読みます。"
+    },
+    {
+      "id": "greatgreatgrandchild",
+      "group": "down",
+      "name": "玄孫",
+      "reading": "やしゃご",
+      "degree": 4,
+      "path": "曾孫の子",
+      "note": "「やしゃご」。読みにくい字ですが、これで正式な呼び名です。"
+    },
+    {
+      "id": "sibling",
+      "group": "side",
+      "name": "兄弟姉妹（兄・姉・弟・妹）",
+      "reading": "きょうだいしまい",
+      "degree": 2,
+      "path": "親の子（自分以外）",
+      "note": "自分より年上なら兄・姉、年下なら弟・妹。親等は2つで、親（1親等）より遠い扱いです。"
+    },
+    {
+      "id": "nephew",
+      "group": "side",
+      "name": "甥・姪",
+      "reading": "おい・めい",
+      "degree": 3,
+      "path": "兄弟姉妹の子",
+      "note": "男性が甥、女性が姪です。"
+    },
+    {
+      "id": "grandnephew",
+      "group": "side",
+      "name": "大甥・大姪",
+      "reading": "おおおい・おおめい",
+      "degree": 4,
+      "path": "兄弟姉妹の孫（甥・姪の子）",
+      "note": "「又甥（またおい）・又姪」とも言います。"
+    },
+    {
+      "id": "uncle",
+      "group": "side",
+      "name": "おじ・おば（伯父・伯母／叔父・叔母）",
+      "reading": "おじ・おば",
+      "degree": 3,
+      "path": "親の兄弟姉妹",
+      "note": "親より年上なら「伯父・伯母」、年下なら「叔父・叔母」と書き分けます。読みはどちらも「おじ・おば」です。"
+    },
+    {
+      "id": "cousin",
+      "group": "side",
+      "name": "いとこ（従兄・従弟・従姉・従妹）",
+      "reading": "いとこ",
+      "degree": 4,
+      "path": "おじ・おばの子",
+      "note": "自分より年上の男性なら従兄、年下の男性なら従弟、年上の女性なら従姉、年下の女性なら従妹。読みはすべて「いとこ」です。"
+    },
+    {
+      "id": "cousin-child",
+      "group": "side",
+      "name": "従甥・従姪",
+      "reading": "じゅうせい・じゅうてつ",
+      "degree": 5,
+      "path": "いとこの子",
+      "note": "「いとこの子は何と呼ぶか」の答えがこれです。「いとこ違い（いとこちがい）」とも言います。"
+    },
+    {
+      "id": "granduncle",
+      "group": "side",
+      "name": "大おじ・大おば（大伯父・大伯母／大叔父・大叔母）",
+      "reading": "おおおじ・おおおば",
+      "degree": 4,
+      "path": "祖父母の兄弟姉妹",
+      "note": "祖父母より年上なら「大伯父・大伯母」、年下なら「大叔父・大叔母」です。"
+    },
+    {
+      "id": "parents-cousin",
+      "group": "side",
+      "name": "いとこおじ・いとこおば（従伯父・従叔父／従伯母・従叔母）",
+      "reading": "いとこおじ・いとこおば",
+      "degree": 5,
+      "path": "親のいとこ",
+      "note": "自分から見て親の世代のいとこです。"
+    },
+    {
+      "id": "second-cousin",
+      "group": "side",
+      "name": "はとこ",
+      "reading": "はとこ",
+      "degree": 6,
+      "path": "いとこの子どうし（祖父母が兄弟姉妹）",
+      "note": "「またいとこ」「ふたいとこ」とも呼びます。6親等で、法律上の親族の一番外側です。"
+    },
+    {
+      "id": "spouse-parent",
+      "group": "inlaw",
+      "name": "配偶者の親（義父・義母）",
+      "reading": "はいぐうしゃのおや",
+      "degree": 1,
+      "path": "夫や妻の親",
+      "note": "日常では「義父（ぎふ）・義母（ぎぼ）」と呼ぶことが多い関係です。婚姻でできた親族なので「姻族」といいます。"
+    },
+    {
+      "id": "spouse-sibling",
+      "group": "inlaw",
+      "name": "配偶者の兄弟姉妹（義兄・義姉・義弟・義妹）",
+      "reading": "はいぐうしゃのきょうだい",
+      "degree": 2,
+      "path": "夫や妻の兄弟姉妹",
+      "note": ""
+    },
+    {
+      "id": "child-spouse",
+      "group": "inlaw",
+      "name": "子の配偶者（嫁・婿）",
+      "reading": "このはいぐうしゃ",
+      "degree": 1,
+      "path": "息子や娘の結婚相手",
+      "note": "「義理の息子・義理の娘」とも言います。"
+    },
+    {
+      "id": "sibling-spouse",
+      "group": "inlaw",
+      "name": "兄弟姉妹の配偶者（義兄・義姉・義弟・義妹）",
+      "reading": "きょうだいのはいぐうしゃ",
+      "degree": 2,
+      "path": "兄弟姉妹の結婚相手",
+      "note": "配偶者の兄弟姉妹と同じ呼び名になりますが、たどり方が違います。"
+    }
+  ]
+}

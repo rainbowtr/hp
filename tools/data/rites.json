@@ -1,0 +1,245 @@
+{
+  "_source": "/Users/hiroshi/projects/Xcode/MeinichiCho/MeinichiCho/Domain/Rite/ValueObjects/RiteKindEnum.swift の displayName / alias / category / offset から機械抽出（tools/extract_rites.py）。アプリの数え方を正とするため、書き起こさずに抽出している。",
+  "rites": [
+    {
+      "id": "shonanoka",
+      "name": "初七日",
+      "category": "chuin",
+      "badge": "7日目",
+      "summary": "亡くなった日を1日目として数えて7日目（命日の6日後）です。",
+      "note": "葬儀の日に繰り上げて行うことが増えています（繰り上げ初七日）。"
+    },
+    {
+      "id": "futananoka",
+      "name": "二七日",
+      "category": "chuin",
+      "badge": "14日目",
+      "summary": "亡くなった日を1日目として数えて14日目（命日の13日後）です。",
+      "note": ""
+    },
+    {
+      "id": "minanoka",
+      "name": "三七日",
+      "category": "chuin",
+      "badge": "21日目",
+      "summary": "亡くなった日を1日目として数えて21日目（命日の20日後）です。",
+      "note": ""
+    },
+    {
+      "id": "yonanoka",
+      "name": "四七日",
+      "category": "chuin",
+      "badge": "28日目",
+      "summary": "亡くなった日を1日目として数えて28日目（命日の27日後）です。",
+      "note": ""
+    },
+    {
+      "id": "itsunanoka",
+      "name": "五七日（三十五日）",
+      "category": "chuin",
+      "badge": "35日目",
+      "summary": "亡くなった日を1日目として数えて35日目（命日の34日後）です。",
+      "note": ""
+    },
+    {
+      "id": "munanoka",
+      "name": "六七日",
+      "category": "chuin",
+      "badge": "42日目",
+      "summary": "亡くなった日を1日目として数えて42日目（命日の41日後）です。",
+      "note": ""
+    },
+    {
+      "id": "shijukunichi",
+      "name": "四十九日（七七日）",
+      "category": "chuin",
+      "badge": "49日目",
+      "summary": "亡くなった日を1日目として数えて49日目（命日の48日後）です。",
+      "note": "忌明け（きあけ）。香典返しはこのあとに送るのが一般的です。納骨をあわせて行うことも多い日です。"
+    },
+    {
+      "id": "hyakkanichi",
+      "name": "百箇日",
+      "category": "hyakkanichi",
+      "badge": "100日目",
+      "summary": "亡くなった日を1日目として数えて100日目（命日の99日後）です。",
+      "note": "「卒哭忌（そっこくき）」とも呼ばれ、泣くのを終える節目とされます。"
+    },
+    {
+      "id": "isshuki",
+      "name": "一周忌",
+      "category": "nenki",
+      "badge": "満1年",
+      "summary": "亡くなってから満1年の日です。命日と同じ月日にあたります。",
+      "note": "亡くなってちょうど1年。ここまでが喪中です。"
+    },
+    {
+      "id": "sankaiki",
+      "name": "三回忌",
+      "category": "nenki",
+      "badge": "満2年",
+      "summary": "亡くなってから満2年の日です。命日と同じ月日にあたります。",
+      "note": "一周忌の翌年です。満2年なので、一周忌の1年後にあたります。"
+    },
+    {
+      "id": "shichikaiki",
+      "name": "七回忌",
+      "category": "nenki",
+      "badge": "満6年",
+      "summary": "亡くなってから満6年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "jusankaiki",
+      "name": "十三回忌",
+      "category": "nenki",
+      "badge": "満12年",
+      "summary": "亡くなってから満12年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "jushichikaiki",
+      "name": "十七回忌",
+      "category": "nenki",
+      "badge": "満16年",
+      "summary": "亡くなってから満16年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "nijusankaiki",
+      "name": "二十三回忌",
+      "category": "nenki",
+      "badge": "満22年",
+      "summary": "亡くなってから満22年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "nijushichikaiki",
+      "name": "二十七回忌",
+      "category": "nenki",
+      "badge": "満26年",
+      "summary": "亡くなってから満26年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "sanjusankaiki",
+      "name": "三十三回忌",
+      "category": "nenki",
+      "badge": "満32年",
+      "summary": "亡くなってから満32年の日です。命日と同じ月日にあたります。",
+      "note": "弔い上げ（とむらいあげ）としてここで年忌を終える家が多い区切りです。"
+    },
+    {
+      "id": "gojukkaiki",
+      "name": "五十回忌",
+      "category": "nenki",
+      "badge": "満49年",
+      "summary": "亡くなってから満49年の日です。命日と同じ月日にあたります。",
+      "note": "弔い上げをさらに先に置く場合の区切りです。"
+    },
+    {
+      "id": "tokasai",
+      "name": "十日祭",
+      "category": "reisai",
+      "badge": "10日目",
+      "summary": "亡くなった日を1日目として数えて10日目（命日の9日後）です。",
+      "note": ""
+    },
+    {
+      "id": "nijunichisai",
+      "name": "二十日祭",
+      "category": "reisai",
+      "badge": "20日目",
+      "summary": "亡くなった日を1日目として数えて20日目（命日の19日後）です。",
+      "note": ""
+    },
+    {
+      "id": "sanjunichisai",
+      "name": "三十日祭",
+      "category": "reisai",
+      "badge": "30日目",
+      "summary": "亡くなった日を1日目として数えて30日目（命日の29日後）です。",
+      "note": ""
+    },
+    {
+      "id": "shijunichisai",
+      "name": "四十日祭",
+      "category": "reisai",
+      "badge": "40日目",
+      "summary": "亡くなった日を1日目として数えて40日目（命日の39日後）です。",
+      "note": ""
+    },
+    {
+      "id": "gojunichisai",
+      "name": "五十日祭",
+      "category": "reisai",
+      "badge": "50日目",
+      "summary": "亡くなった日を1日目として数えて50日目（命日の49日後）です。",
+      "note": ""
+    },
+    {
+      "id": "hyakunichisai",
+      "name": "百日祭",
+      "category": "reisai",
+      "badge": "100日目",
+      "summary": "亡くなった日を1日目として数えて100日目（命日の99日後）です。",
+      "note": ""
+    },
+    {
+      "id": "ichinensai",
+      "name": "一年祭",
+      "category": "reisai",
+      "badge": "満1年",
+      "summary": "亡くなってから満1年の日です。命日と同じ月日にあたります。",
+      "note": "神式では「年祭」と呼びます。"
+    },
+    {
+      "id": "sannensai",
+      "name": "三年祭",
+      "category": "reisai",
+      "badge": "満3年",
+      "summary": "亡くなってから満3年の日です。命日と同じ月日にあたります。",
+      "note": "神式の三年祭は満3年です。仏式の三回忌（満2年）とは1年ずれます。"
+    },
+    {
+      "id": "gonensai",
+      "name": "五年祭",
+      "category": "reisai",
+      "badge": "満5年",
+      "summary": "亡くなってから満5年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "junensai",
+      "name": "十年祭",
+      "category": "reisai",
+      "badge": "満10年",
+      "summary": "亡くなってから満10年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "nijunensai",
+      "name": "二十年祭",
+      "category": "reisai",
+      "badge": "満20年",
+      "summary": "亡くなってから満20年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "sanjunensai",
+      "name": "三十年祭",
+      "category": "reisai",
+      "badge": "満30年",
+      "summary": "亡くなってから満30年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    },
+    {
+      "id": "gojunensai",
+      "name": "五十年祭",
+      "category": "reisai",
+      "badge": "満50年",
+      "summary": "亡くなってから満50年の日です。命日と同じ月日にあたります。",
+      "note": ""
+    }
+  ]
+}

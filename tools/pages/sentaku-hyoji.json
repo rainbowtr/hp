@@ -6,10 +6,30 @@
   "description": "洗濯表示（洗濯マーク）の意味を、新JIS41種・旧JIS22種すべて一覧で。おけ・三角・四角・アイロン・丸の記号が何を指すか、どう洗えばいいかをやさしく解説。古い表示と新しい表示の対応表つき。",
   "h1": "洗濯表示の意味 早見表",
   "lead": "服のタグについている洗濯表示（洗濯マーク）の意味を、全部まとめました。おけは家庭洗濯、三角は漂白、四角は乾かし方、アイロンの形はアイロン、丸はクリーニング店への指示です。記号を押すと、何をしていいか・してはいけないかまで出ます。",
-  "dataPath": "~/projects/Xcode/SentakuHyoji/SentakuHyoji/Resources/care_symbols.json",
-  "dataKeyPath": ["symbols"],
-  "assetDir": "~/projects/Xcode/SentakuHyoji/Design/symbols/svg",
-  "currentGeneration": "jis2016",
+  "counts": "新JIS（2016年〜）41種・旧JIS（2016年より前）22種、あわせて全記号を載せています。",
+  "legend": "タグの記号は左からこの順に並びます。押すと絞り込めます。",
+  "searchPlaceholder": "記号の名前や「乾燥機」「アイロン」などで探す",
+  "figureAlt": "洗濯表示マーク",
+
+  "data": {
+    "path": "~/projects/Xcode/SentakuHyoji/SentakuHyoji/Resources/care_symbols.json",
+    "keyPath": ["symbols"]
+  },
+  "assets": { "dir": "~/projects/Xcode/SentakuHyoji/Design/symbols/svg", "ext": "svg" },
+  "fields": {
+    "id": "id",
+    "category": "category",
+    "title": "name",
+    "summary": "meaning",
+    "detail": "plain",
+    "dos": "dos",
+    "donts": "donts",
+    "source": "sourceNote",
+    "generation": "generation"
+  },
+  "generations": { "current": "jis2016", "currentLabel": "新JIS", "oldLabel": "旧JIS" },
+  "mapping": { "field": "newEquivalentIds", "title": "古い表示は、新しいどの記号にあたるか" },
+
   "categories": {
     "wash": { "label": "洗う（おけ）" },
     "bleach": { "label": "漂白（三角）" },
@@ -17,11 +37,16 @@
     "iron": { "label": "アイロン" },
     "clean": { "label": "クリーニング（丸）" }
   },
+
   "app": {
     "name": "かんたん洗濯表示",
     "url": "https://apps.apple.com/jp/app/id6792310575",
+    "heading": "タグを見ても分からないときは",
     "pitch": "タグの記号が小さくて読めないときや、いくつも並んでいて結局どう洗えばいいのか分からないときは、タグを撮るだけで意味と洗い方をまとめて出すアプリがあります。この早見表と同じ解説がそのまま入っています。"
   },
+
+  "footnote": "出典: JIS L0001／消費者庁「新しい洗濯表示」。記号の解説は一般的な取り扱いの目安です。<br>実際の洗い方は、衣類についている表示と販売店の案内に従ってください。",
+
   "faq": [
     {
       "q": "洗濯表示はいつ変わったのですか？",
