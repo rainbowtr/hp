@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g id="old_dry_line_shade">
+  <line x1="222" y1="96" x2="140" y2="120" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="140" y1="120" x2="60" y2="200" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="60" y1="200" x2="120" y2="262" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="120" y1="262" x2="168" y2="220" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="168" y1="220" x2="168" y2="430" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="168" y1="430" x2="344" y2="430" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="344" y1="430" x2="344" y2="220" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="344" y1="220" x2="392" y2="262" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="392" y1="262" x2="452" y2="200" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="452" y1="200" x2="372" y2="120" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="372" y1="120" x2="290" y2="96" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="222" y1="96" x2="256" y2="130" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="256" y1="130" x2="290" y2="96" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="92" y1="170" x2="168" y2="94" stroke="#111111" stroke-width="16" stroke-linecap="round"/>
+  </g>
+</svg>

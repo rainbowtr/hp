@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g id="iron_200">
+  <line x1="60" y1="392" x2="452" y2="392" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="452" y1="392" x2="452" y2="330" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="452" y1="330" x2="430" y2="240" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="430" y1="240" x2="330" y2="190" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="330" y1="190" x2="210" y2="190" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="210" y1="190" x2="100" y2="330" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="100" y1="330" x2="60" y2="392" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="186" cy="316" r="24" fill="#111111"/>
+  <circle cx="266" cy="316" r="24" fill="#111111"/>
+  <circle cx="346" cy="316" r="24" fill="#111111"/>
+  </g>
+</svg>

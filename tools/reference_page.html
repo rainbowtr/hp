@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:site_name" content="RAINBOW TREE">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/images/rainbow.svg" type="image/svg+xml">
+<script type="application/ld+json">{{JSONLD}}</script>
+<style>
+:root{
+  --bg:#fff6f4; --ink:#4d4f55; --sub:#8a8d94; --card:#fff; --line:#eee2de;
+  --accent:#5b7fa6; --do:#3f7d5e; --dont:#b8593f; --chip:#fdeeea;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+a{color:var(--accent)}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.site{padding:18px 0}
+header.site a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+header.site img{width:26px}
+h1{font-size:26px;line-height:1.45;margin:8px 0 12px}
+.lead{font-size:16px;margin:0 0 18px}
+.counts{font-size:13px;color:var(--sub);margin:0 0 22px}
+h2{font-size:20px;margin:44px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.search{width:100%;padding:12px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
+  padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:18px}
+.card{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;scroll-margin-top:120px}
+/* ★ display:flex は UA の [hidden]{display:none} に勝ってしまうので、明示的に消す。
+   これが無いと hidden 属性は付くのに絞り込みが画面上まったく効かない（2026-08-02 実機で踏んだ）。 */
+.card[hidden]{display:none}
+.card:target{outline:2px solid var(--accent)}
+.figure{flex:0 0 72px}
+.figure img{width:72px;height:72px;display:block}
+.body{min-width:0}
+.tags{display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap}
+.tag{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--ink)}
+.tag.gen-old{background:#eeeeee;color:#77797f}
+.card h3{font-size:15px;margin:2px 0 6px}
+.meaning{font-size:14px;margin:0 0 6px}
+.plain{font-size:13px;color:var(--sub);margin:0 0 8px}
+.actions{list-style:none;padding:0;margin:0 0 8px;font-size:13px}
+.actions li{padding-left:20px;position:relative}
+.actions li::before{position:absolute;left:2px}
+.actions .do{color:var(--do)} .actions .do::before{content:"○"}
+.actions .dont{color:var(--dont)} .actions .dont::before{content:"×"}
+.source{font-size:11px;color:#a8abb1;margin:0}
+.empty{padding:28px;text-align:center;color:var(--sub)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:14px}
+td{border-top:1px solid var(--line);padding:10px;vertical-align:middle}
+tr:first-child td{border-top:0}
+.arrow{color:var(--sub);text-align:center;width:2em}
+.minicell{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);margin-right:12px}
+.minicell img{width:34px;height:34px}
+details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600;font-size:15px}
+details div{padding-top:8px;font-size:14px}
+.appbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:44px 0 24px}
+.appbox h2{margin-top:0;border:0;padding:0;font-size:18px}
+.appbox p{font-size:14px;margin:8px 0 14px}
+.appbtn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+  padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px}
+footer{margin:48px 0 40px;font-size:12px;color:var(--sub);text-align:center}
+footer a{color:var(--sub)}
+@media (max-width:520px){h1{font-size:22px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap"><a href="/"><img src="/images/rainbow.svg" alt="">RAINBOW TREE</a></div></header>
+
+<main class="wrap">
+  <h1>{{H1}}</h1>
+  <p class="lead">{{LEAD}}</p>
+  <p class="counts">新JIS（2016年〜）{{COUNT_NEW}}種・旧JIS（2016年より前）{{COUNT_OLD}}種、あわせて全記号を載せています。</p>
+
+  <div class="tools">
+    <input class="search" id="q" type="search" placeholder="記号の名前や「乾燥機」「アイロン」などで探す" autocomplete="off">
+    <div class="chips" id="chips">
+      <button class="chip" data-filter="all" data-value="all" aria-pressed="true">すべて</button>
+      {{CHIPS}}
+      <button class="chip" data-filter="gen" data-value="new">新JISだけ</button>
+      <button class="chip" data-filter="gen" data-value="old">旧JISだけ</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    {{CARDS}}
+  </div>
+  <p class="empty" id="empty" hidden>あてはまる記号が見つかりませんでした。別の言葉でお試しください。</p>
+
+  <h2>古い表示は、新しいどの記号にあたるか</h2>
+  <div class="tablewrap">
+    <table><tbody>
+      {{MAPPING_ROWS}}
+    </tbody></table>
+  </div>
+
+  <div class="appbox">
+    <h2>タグを見ても分からないときは</h2>
+    <p>{{APP_PITCH}}</p>
+    <a class="appbtn" href="{{APP_URL}}">{{APP_NAME}}を見る（App Store）</a>
+  </div>
+
+  <h2>よくある質問</h2>
+  {{FAQ}}
+</main>
+
+<footer class="wrap">
+  <p>出典: JIS L0001／消費者庁「新しい洗濯表示」。記号の解説は一般的な取り扱いの目安です。<br>
+  実際の洗い方は、衣類についている表示と販売店の案内に従ってください。</p>
+  <p><a href="/">RAINBOW TREE 合同会社</a>　<a href="/privacy_policy.html">プライバシーポリシー</a></p>
+</footer>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var chips = document.getElementById('chips');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var empty = document.getElementById('empty');
+  var state = { cat: null, gen: null, text: '' };
+
+  function apply(){
+    var t = state.text.trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(c){
+      var ok = true;
+      if (state.cat && c.dataset.cat !== state.cat) ok = false;
+      if (ok && state.gen && c.dataset.gen !== state.gen) ok = false;
+      if (ok && t && c.dataset.q.toLowerCase().indexOf(t) === -1) ok = false;
+      c.hidden = !ok;
+      if (ok) shown++;
+    });
+    empty.hidden = shown > 0;
+  }
+
+  q.addEventListener('input', function(){ state.text = q.value; apply(); });
+
+  chips.addEventListener('click', function(e){
+    var b = e.target.closest('.chip');
+    if (!b) return;
+    var f = b.dataset.filter, v = b.dataset.value;
+    if (f === 'all') { state.cat = null; state.gen = null; }
+    else if (f === 'cat') { state.cat = (state.cat === v) ? null : v; }
+    else if (f === 'gen') { state.gen = (state.gen === v) ? null : v; }
+    // 押下状態を状態から描き直す（トグル解除も正しく戻る）
+    chips.querySelectorAll('.chip').forEach(function(x){
+      var on = (x.dataset.filter === 'all') ? (!state.cat && !state.gen)
+             : (x.dataset.filter === 'cat') ? (state.cat === x.dataset.value)
+             : (state.gen === x.dataset.value);
+      x.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    apply();
+  });
+})();
+</script>
+</body>
+</html>

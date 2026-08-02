@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g id="dry_line_shade">
+  <line x1="86" y1="86" x2="426" y2="86" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="426" y1="86" x2="426" y2="426" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="426" y1="426" x2="86" y2="426" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="86" y1="426" x2="86" y2="86" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="256" y1="108" x2="256" y2="404" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  <line x1="104" y1="192" x2="192" y2="104" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  </g>
+</svg>

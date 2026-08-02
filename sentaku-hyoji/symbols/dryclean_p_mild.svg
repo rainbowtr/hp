@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g id="dryclean_p_mild">
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#111111" stroke-width="22"/>
+  <text x="256" y="262" font-family="Hiragino Sans, sans-serif" font-weight="600" font-size="190" fill="#111111" text-anchor="middle" dominant-baseline="central">P</text>
+  <line x1="140" y1="462" x2="372" y2="462" stroke="#111111" stroke-width="18" stroke-linecap="round"/>
+  </g>
+</svg>

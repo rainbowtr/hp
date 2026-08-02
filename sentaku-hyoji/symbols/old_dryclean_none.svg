@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g id="old_dryclean_none">
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#111111" stroke-width="22"/>
+  <text x="256" y="258" font-family="Hiragino Sans, sans-serif" font-weight="600" font-size="92" fill="#111111" text-anchor="middle" dominant-baseline="central">ドライ</text>
+  <line x1="60" y1="60" x2="452" y2="452" stroke="#111111" stroke-width="26" stroke-linecap="round"/>
+  <line x1="452" y1="60" x2="60" y2="452" stroke="#111111" stroke-width="26" stroke-linecap="round"/>
+  </g>
+</svg>

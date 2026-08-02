@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g id="old_iron_none">
+  <line x1="60" y1="392" x2="452" y2="392" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="452" y1="392" x2="452" y2="330" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="452" y1="330" x2="430" y2="240" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="430" y1="240" x2="330" y2="190" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="330" y1="190" x2="210" y2="190" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="210" y1="190" x2="100" y2="330" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="100" y1="330" x2="60" y2="392" stroke="#111111" stroke-width="22" stroke-linecap="round"/>
+  <line x1="70" y1="70" x2="442" y2="442" stroke="#111111" stroke-width="26" stroke-linecap="round"/>
+  <line x1="442" y1="70" x2="70" y2="442" stroke="#111111" stroke-width="26" stroke-linecap="round"/>
+  </g>
+</svg>
