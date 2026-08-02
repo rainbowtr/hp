@@ -15,71 +15,127 @@
 <link rel="icon" href="/images/rainbow.svg" type="image/svg+xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "洗濯表示の意味 早見表｜全63記号を一覧（新JIS・旧JIS対応）", "description": "洗濯表示（洗濯マーク）の意味を、新JIS41種・旧JIS22種すべて一覧で。おけ・三角・四角・アイロン・丸の記号が何を指すか、どう洗えばいいかをやさしく解説。古い表示と新しい表示の対応表つき。", "url": "https://rainbowtree.work/sentaku-hyoji/", "inLanguage": "ja"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "洗濯表示はいつ変わったのですか？", "acceptedAnswer": {"@type": "Answer", "text": "2016年12月1日から新しい表示（JIS L0001）に変わりました。それより前に買った服には旧表示（JIS L0217）がついています。このページの一覧は新旧どちらも載せていて、上の「旧JISだけ」を押すと古い表示だけを見られます。対応表は「古い表示は、新しいどの記号にあたるか」にあります。"}}, {"@type": "Question", "name": "おけに数字が書いてあるのは何の意味ですか？", "acceptedAnswer": {"@type": "Answer", "text": "おけは家庭での洗濯を表し、中の数字は「液温の上限（℃）」です。40なら40℃まで。おけの下に線が1本あれば弱く、2本あれば非常に弱く洗う、という意味です。"}}, {"@type": "Question", "name": "おけに×がついていたら洗えないのですか？", "acceptedAnswer": {"@type": "Answer", "text": "家庭での洗濯ができません。多くの場合はクリーニング店に出すことになります。同じタグにある丸の記号（クリーニングの指示）もあわせて確認してください。"}}, {"@type": "Question", "name": "四角の中の記号はどう読みますか？", "acceptedAnswer": {"@type": "Answer", "text": "四角は乾かし方です。中の縦線は「つり干し」、横線は「平干し」、斜線が左上にあれば「日陰で」。四角の中に丸があるものはタンブル乾燥（乾燥機）で、中の点の数が温度の上限を表します。"}}, {"@type": "Question", "name": "アイロンの記号にある点は何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "点の数がアイロンの温度の上限です。1つで110℃（低）、2つで150℃（中）、3つで200℃（高）まで。アイロンに×がついていればアイロンはかけられません。"}}, {"@type": "Question", "name": "記号が複数並んでいるときはどう見ますか？", "acceptedAnswer": {"@type": "Answer", "text": "並び順は「洗う → 漂白 → 乾かす → アイロン → クリーニング」です。左から順に見ていくと、洗濯の流れのとおりに読めます。"}}]}]}</script>
 <style>
+/* ─────────────────────────────────────────────────────────────
+   デザインの起点は「ケアラベル（洗濯タグ）そのもの」。
+   タグは冷たい生成りの生地に黒一色で刷られていて、色が無い。
+   だからこの紙でも色は意味のあるところにしか置かない
+   ＝○してよい／×いけない と、押せる物だけ。
+   青(#1C6AAE)はアプリ（水滴のアイコン）から1色だけ引き継ぐ。
+   ★会社サイトの配色(#fff6f4)は引き継がない。ここは会社案内ではなく道具。
+   ───────────────────────────────────────────────────────────── */
 :root{
-  --bg:#fff6f4; --ink:#4d4f55; --sub:#8a8d94; --card:#fff; --line:#eee2de;
-  --accent:#5b7fa6; --do:#3f7d5e; --dont:#b8593f; --chip:#fdeeea;
+  --stock:#F1F2EF;      /* タグ生地。暖色のクリームでなく、わずかに冷たい生成り */
+  --print:#FFFFFF;      /* 刷り面。記号はここに黒で乗る */
+  --ink:#14161A;        /* 刷りの黒。記号のSVGと同じ濃さに寄せる */
+  --ink2:#5C6169;       /* 補助 */
+  --ink3:#8D9198;       /* 出典など最小の文字 */
+  --rule:#D8DBD5;       /* 罫。生地の色から起こす */
+  --indigo:#1C6AAE;     /* 唯一のアクセント。水／藍。押せる物と現在地だけ */
+  --indigo-pale:#E7F0F9;
+  --do:#1F6B4A;         /* してよい */
+  --dont:#A33222;       /* してはいけない（朱） */
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
-  color:var(--ink);background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stock);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+  line-height:1.8;-webkit-text-size-adjust:100%;
+  font-feature-settings:"palt" 1;}   /* 日本語の詰め。見出しの締まりが変わる */
 img{max-width:100%}
-a{color:var(--accent)}
-.wrap{max-width:960px;margin:0 auto;padding:0 16px}
-/* ★上部にブランドヘッダーを置かない。検索から来た人が最初に見るのは「答え」であるべきで、
-   ロゴは1画面ぶんの一等地を奪うだけ。発行者はフッターに出す（誰が書いたかはGoogleにも要る）。 */
-h1{font-size:26px;line-height:1.45;margin:36px 0 12px}
-.lead{font-size:16px;margin:0 0 18px}
-.counts{font-size:13px;color:var(--sub);margin:0 0 22px}
-h2{font-size:20px;margin:44px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
-.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 10px;border-bottom:1px solid var(--line)}
-.search{width:100%;padding:12px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
-  padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
-.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:18px}
-.card{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;scroll-margin-top:120px}
-/* ★ display:flex は UA の [hidden]{display:none} に勝ってしまうので、明示的に消す。
-   これが無いと hidden 属性は付くのに絞り込みが画面上まったく効かない（2026-08-02 実機で踏んだ）。 */
+a{color:var(--indigo)}
+.wrap{max-width:940px;margin:0 auto;padding:0 16px}
+
+/* 見出し。派手な書体を足さず、太さと字間だけで性格を出す */
+h1{font-size:clamp(26px,5vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.3;margin:40px 0 14px}
+.lead{font-size:16px;margin:0 0 16px;max-width:64ch}
+.counts{font-size:12.5px;color:var(--ink2);margin:0 0 26px}
+h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:52px 0 14px;
+  padding-left:12px;border-left:4px solid var(--indigo)}
+
+/* 道具の帯。スクロールしても記号を絞り込める */
+.tools{position:sticky;top:0;z-index:5;background:var(--stock);padding:12px 0 12px;
+  border-bottom:1px solid var(--rule)}
+.search{width:100%;padding:13px 14px;font-size:16px;font-family:inherit;
+  border:1px solid var(--rule);border-radius:8px;background:var(--print);color:var(--ink)}
+.search:focus{outline:2px solid var(--indigo);outline-offset:1px;border-color:transparent}
+/* ★並び順は飾りでなく事実。タグの記号は左からこの順に並ぶので、絞り込みが凡例も兼ねる */
+.legend{font-size:12px;color:var(--ink2);margin:12px 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--rule);background:var(--print);color:var(--ink);border-radius:6px;
+  padding:7px 13px;font-size:13px;font-family:inherit;cursor:pointer;line-height:1.2}
+.chip:hover{border-color:var(--indigo)}
+.chip:focus-visible{outline:2px solid var(--indigo);outline-offset:1px}
+.chip[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:#fff}
+
+/* 記号の札。刷り面に黒い記号が乗っている状態をそのまま並べる */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin-top:20px}
+.card{display:flex;gap:16px;background:var(--print);border:1px solid var(--rule);
+  border-radius:4px;padding:16px;scroll-margin-top:150px}
+/* ★display:flex は UA の [hidden]{display:none} に勝つ。これが無いと絞り込みが画面上効かない */
 .card[hidden]{display:none}
-.card:target{outline:2px solid var(--accent)}
-.figure{flex:0 0 72px}
-.figure img{width:72px;height:72px;display:block}
+.card:target{border-color:var(--indigo);box-shadow:0 0 0 2px var(--indigo-pale)}
+/* ★一番大きく張るのはここ。手元のタグ（2cm）と見比べる紙なので、記号は大きくないと仕事をしない */
+.figure{flex:0 0 88px}
+.figure img{width:88px;height:88px;display:block}
 .body{min-width:0}
-.tags{display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap}
-.tag{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--ink)}
-.tag.gen-old{background:#eeeeee;color:#77797f}
-.card h3{font-size:15px;margin:2px 0 6px}
+.tags{display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.tag{font-size:10.5px;letter-spacing:.04em;padding:2px 7px;border-radius:3px;
+  background:var(--indigo-pale);color:var(--indigo)}
+.tag.gen-old{background:#ECEDEA;color:var(--ink2)}
+.card h3{font-size:15.5px;font-weight:700;margin:0 0 7px;line-height:1.5}
 .meaning{font-size:14px;margin:0 0 6px}
-.plain{font-size:13px;color:var(--sub);margin:0 0 8px}
-.actions{list-style:none;padding:0;margin:0 0 8px;font-size:13px}
-.actions li{padding-left:20px;position:relative}
-.actions li::before{position:absolute;left:2px}
+.plain{font-size:13px;color:var(--ink2);margin:0 0 10px}
+.actions{list-style:none;padding:0;margin:0 0 10px;font-size:13px;line-height:1.7}
+.actions li{padding-left:19px;position:relative}
+.actions li::before{position:absolute;left:0;font-size:12px}
 .actions .do{color:var(--do)} .actions .do::before{content:"○"}
 .actions .dont{color:var(--dont)} .actions .dont::before{content:"×"}
-.source{font-size:11px;color:#a8abb1;margin:0}
-.empty{padding:28px;text-align:center;color:var(--sub)}
+/* ★JIS番号は文章でなく仕様。等幅で組むと「規格の番号」だと一目で分かる */
+.source{font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--ink3);margin:0}
+.empty{padding:32px;text-align:center;color:var(--ink2)}
+
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{border-collapse:collapse;width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:14px}
-td{border-top:1px solid var(--line);padding:10px;vertical-align:middle}
+table{border-collapse:collapse;width:100%;background:var(--print);
+  border:1px solid var(--rule);font-size:14px}
+td{border-top:1px solid var(--rule);padding:11px 12px;vertical-align:middle}
 tr:first-child td{border-top:0}
-.arrow{color:var(--sub);text-align:center;width:2em}
-.minicell{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);margin-right:12px}
-.minicell img{width:34px;height:34px}
-details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
-summary{cursor:pointer;font-weight:600;font-size:15px}
-details div{padding-top:8px;font-size:14px}
-.appbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:44px 0 24px}
+.arrow{color:var(--ink3);text-align:center;width:2.5em}
+.minicell{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);margin-right:14px}
+.minicell img{width:36px;height:36px;flex:0 0 36px}
+
+details{background:var(--print);border:1px solid var(--rule);border-radius:4px;
+  padding:13px 15px;margin-bottom:9px}
+summary{cursor:pointer;font-weight:700;font-size:15px;line-height:1.6}
+summary:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+details div{padding-top:9px;font-size:14px;color:var(--ink2)}
+
+.appbox{background:var(--print);border:1px solid var(--rule);border-radius:4px;
+  padding:24px;margin:52px 0 24px;border-top:3px solid var(--indigo)}
 .appbox h2{margin-top:0;border:0;padding:0;font-size:18px}
-.appbox p{font-size:14px;margin:8px 0 14px}
-/* ★App Store バッジは Apple 公式アセット（toolbox.marketingtools.apple.com の JP 版 SVG）。
-   Apple の Identity Guidelines: 加工・改色・効果の追加は不可／高さ40px以上／
-   周囲にバッジ高さの1/10以上の余白。だから filter も border-radius も当てない。 */
+.appbox p{font-size:14px;margin:10px 0 16px;max-width:62ch}
+/* ★App Store バッジは Apple 公式アセット。Identity Guidelines により
+   加工・改色・効果は不可／高さ40px以上／周囲にバッジ高さの1/10以上の余白。 */
 .appbadge{display:inline-block;line-height:0;padding:6px}
 .appbadge img{height:54px;width:auto;display:block}
-footer{margin:48px 0 40px;font-size:12px;color:var(--sub);text-align:center}
-footer a{color:var(--sub)}
-@media (max-width:520px){h1{font-size:22px}.grid{grid-template-columns:1fr}}
+.appbadge:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+
+footer{margin:56px 0 44px;font-size:12px;color:var(--ink2);text-align:center;line-height:1.9}
+footer a{color:var(--ink2)}
+@media (max-width:520px){
+  .grid{grid-template-columns:1fr}
+  .figure{flex:0 0 72px}
+  .figure img{width:72px;height:72px}
+  .card{gap:13px;padding:14px}
+  /* ★固定バーは狭いほど邪魔になる。チップが3段に折り返すと画面の半分近くを占めて、
+     肝心の記号が見えなくなる。横1行のスクロールにして帯を薄く保つ。 */
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    margin:0 -16px;padding:0 16px 2px;scroll-padding-left:16px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .tools{padding:10px 0}
+  .legend{margin:9px 0 7px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -90,6 +146,7 @@ footer a{color:var(--sub)}
 
   <div class="tools">
     <input class="search" id="q" type="search" placeholder="記号の名前や「乾燥機」「アイロン」などで探す" autocomplete="off">
+    <p class="legend">タグの記号は左からこの順に並びます。押すと絞り込めます。</p>
     <div class="chips" id="chips">
       <button class="chip" data-filter="all" data-value="all" aria-pressed="true">すべて</button>
       <button class="chip" data-filter="cat" data-value="wash">洗う（おけ）</button>
