@@ -73,8 +73,11 @@ details div{padding-top:8px;font-size:14px}
 .appbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:44px 0 24px}
 .appbox h2{margin-top:0;border:0;padding:0;font-size:18px}
 .appbox p{font-size:14px;margin:8px 0 14px}
-.appbtn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
-  padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px}
+/* ★App Store バッジは Apple 公式アセット（toolbox.marketingtools.apple.com の JP 版 SVG）。
+   Apple の Identity Guidelines: 加工・改色・効果の追加は不可／高さ40px以上／
+   周囲にバッジ高さの1/10以上の余白。だから filter も border-radius も当てない。 */
+.appbadge{display:inline-block;line-height:0;padding:6px}
+.appbadge img{height:54px;width:auto;display:block}
 footer{margin:48px 0 40px;font-size:12px;color:var(--sub);text-align:center}
 footer a{color:var(--sub)}
 @media (max-width:520px){h1{font-size:22px}.grid{grid-template-columns:1fr}}
@@ -113,7 +116,7 @@ footer a{color:var(--sub)}
   <div class="appbox">
     <h2>タグを見ても分からないときは</h2>
     <p>{{APP_PITCH}}</p>
-    <a class="appbtn" href="{{APP_URL}}">{{APP_NAME}}を見る（App Store）</a>
+    <a class="appbadge" href="{{APP_URL}}"><img src="/images/app-store-badge-ja.svg" alt="{{APP_NAME}}を App Store でダウンロード" width="147" height="54"></a>
   </div>
 
   <h2>よくある質問</h2>
