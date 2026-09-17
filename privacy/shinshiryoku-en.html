@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kantan Shinshiryoku — Privacy Policy | RAINBOW TREE</title>
+    <link rel="icon" href="/images/rainbow.svg" type="image/svg+xml">
+    <style>
+        body { margin: 0; font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif; color: #333; line-height: 1.8; background: #fdfdfd; }
+        .header { display: flex; align-items: center; gap: 10px; padding: 14px 20px; background: #fff; border-bottom: 1px solid #eee; font-weight: bold; }
+        .header img { height: 28px; }
+        .main { max-width: 760px; margin: 0 auto; padding: 24px 20px 60px; }
+        h1 { font-size: 1.5em; border-bottom: 2px solid #444; padding-bottom: 8px; }
+        h2 { font-size: 1.15em; margin-top: 2em; color: #222; }
+        .date { color: #777; font-size: 0.9em; }
+        .lang { color: #777; font-size: 0.9em; margin-top: 4px; }
+        ul { padding-left: 1.4em; }
+        li { margin-bottom: 0.6em; }
+        a { color: #555; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/images/rainbow.svg" alt="">
+        RAINBOW TREE
+    </div>
+    <div class="main">
+        <h1>Kantan Shinshiryoku — Privacy Policy</h1>
+        <p>RAINBOW TREE LLC ("we", "us") sets out below how it handles user information in the iOS app "かんたん深視力" (Kantan Shinshiryoku) (the "App"). This page is the English version of the Japanese privacy policy; both have the same content.</p>
+        <p class="date">Effective date: September 17, 2026</p>
+        <p class="lang">日本語版: <a href="/privacy/shinshiryoku.html">プライバシーポリシー（日本語）</a></p>
+
+        <h2>1. Core principle</h2>
+        <p>The App is a practice app for the depth perception test (the three-rod method) used in Japanese driver's license tests. It can be used without creating an account. Practice records, calibration values and the test date are <strong>stored only on your device</strong> and are never sent to our servers. The App does not sync with iCloud.</p>
+
+        <h2>2. Use of the camera</h2>
+        <p>The App uses the front camera only on its Calibration screen, to size the three rods drawn on the screen. <strong>It does not take photos or videos, and it does not save any.</strong></p>
+        <p>Before the camera is used, the App shows a screen that explains what the camera is used for, and the iOS camera permission is requested only after you tap "続ける" (Continue) on that screen. If you choose "カメラを使わずに進む" (Proceed without the camera), you can enter the distance by hand instead, and every feature of the App remains available. You can withdraw camera permission at any time in the iOS Settings app.</p>
+
+        <h2 id="face-data">3. Face data (ARKit face tracking / TrueDepth camera)</h2>
+        <p>Face data is sensitive user information, so we state exactly what the App does with it.</p>
+        <ul>
+            <li><strong>What is collected:</strong> While the Calibration screen is open, the App uses Apple's ARKit face tracking (ARFaceTrackingConfiguration, which uses the TrueDepth camera on devices that have one). From the face position that ARKit computes on the device, <strong>the App calculates one number: the distance between your face and the screen (front camera), in millimetres. This distance is the only value the App takes from face tracking.</strong> The App does not read, record or store camera images, video, depth maps, the face mesh, facial expressions or gaze. It <strong>never creates or stores a faceprint, face template or any other biometric identifier</strong>, and it never identifies, authenticates or matches any person.</li>
+            <li><strong>Purpose:</strong> solely to calibrate the on-screen test, that is, to draw the three rods with the width, spacing and travel that match the visual angle of the three-rod depth perception tester used in Japanese driver's license tests, viewed from 2.5 m. It is not used for advertising, marketing, authentication, building user profiles or any other purpose.</li>
+            <li><strong>Where it is processed:</strong> entirely on your device.</li>
+            <li><strong>Storage and retention:</strong> The live distance shown on the Calibration screen exists only in memory and is discarded when the screen is closed. Only when you tap "この距離で固定する" (Fix this distance) does the App save that <strong>single number</strong>, together with the date and time of the measurement and a note that it was measured with the camera, in the App's own storage on your device (fixing a new distance overwrites it). Practice records saved afterwards include the fixed distance, so that only records taken under the same conditions are compared with each other. Saved values remain on your device until you delete them as described below.</li>
+            <li><strong>Deletion:</strong> Tapping "測り直す" (Measure again) on the Calibration screen deletes the saved distance. Deleting the App deletes the distance and all practice records that contain it.</li>
+            <li><strong>Sharing with third parties:</strong> none. Neither the distance nor any camera image is sent to our servers, to analytics services (Firebase), to advertisers or to any other third party, and <strong>it is never shared, sold or disclosed</strong>. The App does not sync with iCloud. If you have turned on device backup (iCloud Backup or a backup to a computer), the App's data is included in your own backup, in the same way as the data of any other app.</li>
+        </ul>
+
+        <h2>4. Information we obtain</h2>
+        <p>The App's features themselves never transmit face information, the distance, practice records or the test date. However, we obtain the following for quality improvement and, only if you contact us, to reply to your inquiry. <strong>None of it includes face images, the distance, error measurements or the test date.</strong></p>
+        <ul>
+            <li><strong>Usage analytics (Firebase Analytics / Google Analytics)</strong><br>How far you have progressed through the App's screens, and an anonymous identifier for the device.</li>
+            <li><strong>Crash reports (Firebase Crashlytics)</strong><br>Technical information when the App terminates unexpectedly (device model, OS version, location in the code, App version). Used to fix defects.</li>
+            <li><strong>Inquiries (in-app "不具合・バグ報告・ご要望" / bug reports and requests)</strong><br>Only if you use it: the text and category you send and an anonymous device-linked identifier are stored on our support server so that we can reply. No name or email address is required.</li>
+        </ul>
+
+        <h2>5. Provision to third parties</h2>
+        <p>Other than the service provider listed above (Google), we do not provide or sell the information we obtain to any third party. Face information and the distance never leave the device and therefore cannot be provided to anyone.</p>
+
+        <h2>6. Advertising and tracking</h2>
+        <p>The App contains no advertising. It does not collect information for advertising, and it does not track users across other companies' apps or websites.</p>
+
+        <h2>7. Purchase information</h2>
+        <p>All in-app purchase payments are processed by Apple through the App Store. We never obtain your payment information.</p>
+
+        <h2>8. Your choices</h2>
+        <p>You can change camera permission at any time in the iOS Settings app. If you do not allow the camera, you can still use the App by entering the distance by hand. Deleting the App deletes all data stored on the device.</p>
+
+        <h2>9. Children's privacy</h2>
+        <p>The App is not designed for or directed at children under 13, and it is not registered in Apple's Kids category. We do not knowingly collect personal information from children under 13.</p>
+
+        <h2>10. Changes to this policy</h2>
+        <p>If we change this policy, we will post the change on this page.</p>
+
+        <h2>11. Contact</h2>
+        <p>For questions about this policy, please use "不具合・バグ報告・ご要望" in the App or write to <a href="mailto:sumi21japan@gmail.com">sumi21japan@gmail.com</a>.</p>
+    </div>
+</body>
+</html>

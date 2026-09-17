@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>かんたん深視力 プライバシーポリシー | RAINBOW TREE</title>
+    <link rel="icon" href="/images/rainbow.svg" type="image/svg+xml">
+    <style>
+        body { margin: 0; font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif; color: #333; line-height: 1.8; background: #fdfdfd; }
+        .header { display: flex; align-items: center; gap: 10px; padding: 14px 20px; background: #fff; border-bottom: 1px solid #eee; font-weight: bold; }
+        .header img { height: 28px; }
+        .main { max-width: 760px; margin: 0 auto; padding: 24px 20px 60px; }
+        h1 { font-size: 1.5em; border-bottom: 2px solid #444; padding-bottom: 8px; }
+        h2 { font-size: 1.15em; margin-top: 2em; color: #222; }
+        .date { color: #777; font-size: 0.9em; }
+        .lang { color: #777; font-size: 0.9em; margin-top: 4px; }
+        ul { padding-left: 1.4em; }
+        li { margin-bottom: 0.6em; }
+        a { color: #555; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/images/rainbow.svg" alt="">
+        RAINBOW TREE
+    </div>
+    <div class="main">
+        <h1>かんたん深視力 プライバシーポリシー</h1>
+        <p>RAINBOW TREE合同会社（以下「当社」）は、iOSアプリ「かんたん深視力」（以下「本アプリ」）における利用者の情報の取り扱いについて、以下のとおり定めます。</p>
+        <p class="date">施行日：2026年9月17日</p>
+        <p class="lang">English version: <a href="/privacy/shinshiryoku-en.html">Privacy Policy (English)</a></p>
+
+        <h2>1. 基本方針</h2>
+        <p>本アプリは、運転免許の深視力検査（三桿法）の練習アプリです。アカウント登録なしでご利用いただけます。検査の記録・校正の値・受検日は<strong>お使いの端末の中だけ</strong>に保存され、当社のサーバーに送信されることはありません。iCloud への同期もしません。</p>
+
+        <h2>2. カメラの使用</h2>
+        <p>本アプリは、画面に描く3本の桿の大きさを合わせる「校正」の画面でだけ、前面カメラを使います。<strong>写真や動画は撮らず、保存もしません。</strong></p>
+        <p>カメラを使う前に、何のために使うかを説明する画面を表示し、そこで「続ける」を押したあとに iOS のカメラの許可を求めます。「カメラを使わずに進む」を選ぶと、カメラを使わずに距離を手で入力でき、本アプリのすべての機能をご利用いただけます。カメラの許可は、iOS の「設定」からいつでも取り消せます。</p>
+
+        <h2 id="face-data">3. 顔のデータの取り扱い（ARKit の顔追跡・TrueDepth カメラ）</h2>
+        <p>顔に関する情報は取り扱いに注意を要するため、本アプリが実際に何をしているかを明記します。</p>
+        <ul>
+            <li><strong>取得する内容：</strong>校正の画面を開いているあいだ、Apple の ARKit の顔追跡（ARFaceTrackingConfiguration。TrueDepth カメラを備えた端末ではそのカメラを使います）が端末内で求めた顔の位置から、<strong>顔と画面（前面カメラ）との距離を1つの数値（ミリメートル）として計算します。本アプリが取り出すのは、この距離の数値だけです。</strong>カメラの画像・映像・深度マップ、顔の形（メッシュ）、表情、視線は、読み出さず、記録も保存もしません。顔の特徴量・顔テンプレート・顔紋その他の<strong>生体識別子を作成・保存することはなく</strong>、個人の識別・認証・照合も一切行いません。</li>
+            <li><strong>使う目的：</strong>画面に描く3本の桿の太さ・間隔・動く量を、運転免許の深視力検査で使われる三桿式深視力計を 2.5m 離れて見たときと同じ視角に合わせるため（校正）だけに使います。広告・マーケティング・本人確認（認証）・利用者のプロファイル作成、その他の目的には使いません。</li>
+            <li><strong>処理する場所：</strong>すべてお客様の端末内です。</li>
+            <li><strong>保存と保持期間：</strong>校正の画面に表示される「いまの距離」はメモリ上にだけあり、画面を閉じると破棄されます。お客様が「この距離で固定する」を押したときだけ、その<strong>距離の数値1つ</strong>を、測った日時・カメラで測ったという区別とあわせて、端末内の本アプリの保存領域に保存します（固定し直すと上書きされます）。また、そのあと保存する練習の記録には、同じ条件の記録どうしを比べるために、固定した距離の数値を含めます。保存した値は、下の「削除」の操作をするまで端末内に残ります。</li>
+            <li><strong>削除：</strong>校正の画面の「測り直す」を押すと、保存した距離の値を削除します。アプリを削除すると、距離の値と、それを含む練習の記録はすべて削除されます。</li>
+            <li><strong>第三者への提供・送信：</strong>ありません。距離の数値もカメラの映像も、当社のサーバー、分析サービス（Firebase）、広告事業者、その他の第三者に<strong>送信・共有・販売・開示することはありません</strong>。iCloud への同期もしません。なお、お客様が端末のバックアップ（iCloud バックアップ、またはパソコンへのバックアップ）を有効にしている場合は、ほかのアプリのデータと同じく、お客様ご自身のバックアップに含まれます。</li>
+        </ul>
+
+        <h2>4. 当社が取得する情報</h2>
+        <p>本アプリの機能そのものが、顔の情報・距離・検査の記録・受検日を送信することはありません。一方で、品質改善のため、また、お問い合わせをご利用の場合には返信のため、以下の情報を取得します。<strong>いずれにも、顔の画像・距離・ずれの数値・受検日は含まれません。</strong></p>
+        <ul>
+            <li><strong>利用状況の分析（Firebase Analytics / Google アナリティクス）</strong><br>どの画面まで進んだか等の利用状況と、端末を識別する匿名のID。</li>
+            <li><strong>クラッシュ情報（Firebase Crashlytics）</strong><br>アプリが予期せず終了した際の技術情報（端末の機種・OS のバージョン・発生箇所・アプリの版数など）。不具合の修正に使用します。</li>
+            <li><strong>お問い合わせ（アプリ内の「不具合・バグ報告・ご要望」）</strong><br>ご利用いただいた場合のみ、返信を行うために、送信された本文と種類、端末に紐づく匿名のIDを当社のサポート用サーバーに保存します。氏名・メールアドレス等の登録は不要です。</li>
+        </ul>
+
+        <h2>5. 第三者への提供</h2>
+        <p>当社は、上記のサービス提供事業者（Google）を除き、取得した情報を第三者に提供・販売しません。顔に関する情報と距離の数値は、端末の外に出ないため、提供の対象になりません。</p>
+
+        <h2>6. 広告と追跡</h2>
+        <p>本アプリに広告はありません。広告のための情報を集めることも、他社のアプリやウェブサイトをまたいで利用者を追跡することもありません。</p>
+
+        <h2>7. 購入情報</h2>
+        <p>アプリ内課金のお支払いはすべて App Store を通じて Apple が処理します。当社がお客様のお支払い情報を取得することはありません。</p>
+
+        <h2>8. 利用者の選択</h2>
+        <p>カメラの許可は、iOS の「設定」からいつでも変更できます。カメラを許可しない場合も、距離を手で入力してご利用いただけます。アプリを削除すると、端末内に保存されたデータはすべて削除されます。</p>
+
+        <h2>9. お子様のプライバシー</h2>
+        <p>本アプリは13歳未満のお子様に向けて設計・提供しているものではなく、Apple の「キッズ」カテゴリにも登録していません。13歳未満のお子様から意図的に個人情報を収集することはありません。</p>
+
+        <h2>10. 本ポリシーの変更</h2>
+        <p>本ポリシーを変更する場合は、本ページに掲載します。</p>
+
+        <h2>11. お問い合わせ</h2>
+        <p>本ポリシーに関するお問い合わせは、アプリ内の「不具合・バグ報告・ご要望」、または <a href="mailto:sumi21japan@gmail.com">sumi21japan@gmail.com</a> までご連絡ください。</p>
+    </div>
+</body>
+</html>
